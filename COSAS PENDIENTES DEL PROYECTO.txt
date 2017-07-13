@@ -1,0 +1,19 @@
+COSAS QUE HACER Y BUSCAR EN INTERNET
+Como cargar el contenido de un textarea en la pagina de edición de expedientes sin que aparezcan las comillas al final y al comienzo del texto.
+
+¿Es necesaria la función php setLocale()?
+
+Poner los for de todos los label.
+
+Las ids de las tablas fisicas no se deben ver en ninguna tabla del sistema que vel usuario, solo dejarlas durante la programación.
+
+Después de cargar un expediente, que se le pregunte al usuario si a continuación quiere cargar una actuación en el expediente que acabo de crear. Usando un popup javascript u otra pagina.
+
+
+COSAS PARA PREGUNTARLE AL CLIENTE
+
+En la carga de un expediente, que se pueda elegir el area de origen con una drop-down list (select) que se carge con la tabla area, y en caso de necesitarse crear una nueva área, se la carga. Averiguar que es lo más común, que se carguen nuevas áreas de origen o si se usan casi siempre las mismas.
+
+Ademas de tener área origen en el expediente, preguntar al cliente si también quiere un area actual, por ejemplo para saber en que área está en tratamiento el expediente actualmente.
+O si eso queda mejor expresado en cada actuación por separado.
+
