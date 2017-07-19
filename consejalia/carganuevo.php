@@ -34,8 +34,8 @@
 				<label>Titulo:</label>
 				<input class="form-control" id="titulo" type="text" name="titulo">
 				<label>Numero:</label>
-				<input class="form-control" id="numero" type="text" name="numero" placeholder="nnnn/aaaa">
-				<label>Area de Origen:</label>
+				<input class="form-control" id="numero" type="text" name="numero" placeholder="nnnn-a-20XX">
+				<label>Origen:</label>
 				<!--This is a comment. Comments are not displayed in the browser-->
 				<!--<input class="form-control" id="area" type="text" name="area">-->
 				<!--
@@ -55,6 +55,7 @@
 					<option value="Secretaria">
 					<option value="Equipo territorial del bloque">
 					<option value="Equipo CCPA">
+					<option value="Area de Personal">
 				</datalist>
 				<label>Reseña sobre el título:</label>
 				<textarea class="form-control" name="resena"></textarea>

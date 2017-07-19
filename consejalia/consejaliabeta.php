@@ -42,7 +42,7 @@
 	        <th>ID</th>
 	        <th>Titulo</th>
 	        <th>Numero</th>
-	        <th>Area de Origen</th>
+	        <th>Origen</th>
 	        <th>Reseña sobre el título</th>
 	        <th>Estado</th>
 	        <th>Fecha de Inicio</th>

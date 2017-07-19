@@ -43,7 +43,7 @@
 					<input class="form-control" id="titulo" type="text" name="titulo" value="<?php echo $exp['titulo']; ?>">
 					<label for="numero">Numero:</label>
 					<input class="form-control" id="numero" type="text" name="numero" value="<?php echo $exp['numero']; ?>" placeholder="nnnn/aaaa">
-					<label for="area">Area de Origen:</label>
+					<label for="area">Origen:</label>
 					<!--<input class="form-control" id="area" type="text" name="area" value="<?php echo $exp['area']; ?>" > -->
 					<input class= "form-control"  id="area" type="text" name="area" value="<?php echo $exp['area']; ?>" list="areas" >
 					<datalist id="areas">
@@ -51,6 +51,7 @@
 						<option value="Secretaria">
 						<option value="Equipo territorial del bloque">
 						<option value="Equipo CCPA">
+						<option value="Area de Personal">
 					</datalist>
 					<label for="resena">Reseña sobre el título:</label>
 					<textarea class="form-control" id="resena" name="resena">"<?php echo $exp['resena']; ?>"</textarea>					
