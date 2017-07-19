@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Expedientes</title>
+		<title>Gestion de Expedientes</title>
 		<!-- Bootstrap -->
 		<meta charset="utf-8">
 	</head>

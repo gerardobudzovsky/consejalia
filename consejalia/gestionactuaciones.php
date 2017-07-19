@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Actuaciones</title>
+		<title>Gestion de Actuaciones</title>
 		<!-- Bootstrap -->
 		<meta charset="utf-8">
 	</head>
@@ -43,9 +43,6 @@
 	        <th>Id Expediente</th>
 			<th>Titulo Expediente</th>	        
 			<th>Numero Expediente</th>
-	        <!--
-			<th>Nombre del proyecto</th>
-	       	-->
 			<th>Fin</th>
 	        <th>Tipo de actuacion</th>
 	        <th>Opciones</th>
@@ -64,7 +61,6 @@
 		        	echo "<td>".$fila[1] ."</td>";
 		        	echo "<td>".$arrexpe[1] ."</td>";	        	
 		        	echo "<td>".$arrexpe[2] ."</td>";
-		        	echo "<td>".$fila[2] ."</td>";
 		        	echo "<td>".$fila[3] ."</td>";
 		        	echo "<td>".$fila[4] ."</td>";
 		        	echo "<td><a href=editaractuacion.php?idactuacion=".$fila[0]."&idexpediente=".$fila[1].">Editar</a>";

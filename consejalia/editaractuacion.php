@@ -9,7 +9,6 @@
 		mysqli_query($conexion, "UPDATE actuacion
 			SET
 			idexpediente= '".$_POST['idexpediente']."',
-			nombreproy= '".$_POST['nombreproy']."',
 			fin= '".$_POST['fin']."',
 			tipo= '".$_POST['tipo']."'
 			WHERE idactuacion=".$_GET['idactuacion'].
@@ -44,12 +43,8 @@
 			<form action="" method="POST">
 				<div class="form-group">
 					<h1>Editar Actuacion</h1>
-					<!--
-					<label>Nombre del Proyecto:</label>
-					<input class="form-control" id="nombreproy" type="text" name="nombreproy" value="<?php echo $act['nombreproy']; ?>">
-					-->
+					
 					<label>Numero de expediente:</label>
-
 					<select class="form-control" id="idexpediente" name="idexpediente" >
 						<?php 
 							$expedientes = mysqli_query($conexion, "SELECT * FROM expediente ORDER BY numero LIMIT 9999");

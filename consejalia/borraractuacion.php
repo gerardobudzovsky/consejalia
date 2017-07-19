@@ -29,10 +29,7 @@
 				$filaexpe= mysqli_query($conexion, "SELECT * FROM expediente WHERE idexpediente=".$actuacion[1]."");
 		        $arrexpe= mysqli_fetch_array($filaexpe);
 		        	
-		        echo "<h3> Titulo de expediente: ".$arrexpe[1] ."</h2>";	        	
-				/*
-				echo "<h3>Nombre de proyecto: ". $actuacion[2] . "</h3>";
-				*/	
+		        echo "<h3> Titulo de expediente: ".$arrexpe[1] ."</h2>";	
 				echo "<h4>Fin: ". $actuacion[3] . "</h4>";
 			?>
 			<form action="" method="POST">
