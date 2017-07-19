@@ -8,6 +8,7 @@
 			numero='".$_POST['numero']."',
 			area='".$_POST['area']."',
 			resena='".$_POST['resena']."',
+			estado='".$_POST['estado']."',
 			fecha='".$_POST['fecha']."'
 			WHERE idexpediente=".$_GET['idexpediente'].""
 		);
