@@ -29,8 +29,10 @@
 			<form action="" method="POST">
 				<div class="form-group">
 					<h1>Carga de Actuacion</h1>
+					<!--
 					<label>Nombre del Proyecto:</label>
 					<input class="form-control" id="nombreproy" type="text" name="nombreproy">
+					-->
 					<label>Numero de expediente:</label>
 
 					<select class="form-control" id="idexpediente" name="idexpediente" >
@@ -48,9 +50,7 @@
 					<label>Tipo de Actuacion:</label>
 					<select class="form-control" id="tipo" name="tipo">
 						<option value="Pase">Pase</option>
-						<option value="Instrumento">Instrumento</option>
-						<option value="Informe de terceros">Informe de terceros</option>
-						<option value="Presupuesto">Presupuesto</option>					
+						<option value="Instrumento">Instrumento</option>					
 					</select>
 					<br>
 					<input class="btn btn-default" type="submit" name="enviar" value="Cargar Actuacion">

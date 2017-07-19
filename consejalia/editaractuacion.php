@@ -44,9 +44,10 @@
 			<form action="" method="POST">
 				<div class="form-group">
 					<h1>Editar Actuacion</h1>
-
+					<!--
 					<label>Nombre del Proyecto:</label>
 					<input class="form-control" id="nombreproy" type="text" name="nombreproy" value="<?php echo $act['nombreproy']; ?>">
+					-->
 					<label>Numero de expediente:</label>
 
 					<select class="form-control" id="idexpediente" name="idexpediente" >
@@ -70,9 +71,7 @@
 					<label>Tipo de Actuacion:</label>
 					<select class="form-control" id="tipo" name="tipo">
 						<option value="Pase" <?php if ($act['tipo']=="Pase"){ echo "selected='selected'"; }; ?>>Pase</option>
-						<option value="Instrumento" <?php if ($act['tipo']=="Instrumento"){ echo "selected='selected'"; }; ?>>Instrumento</option>
-						<option value="Informe de terceros" <?php if ($act['tipo']=="Informe de terceros"){ echo "selected='selected'"; }; ?>>Informe de terceros</option>
-						<option value="Presupuesto" <?php if ($act['tipo']=="Presupuesto"){ echo "selected='selected'"; }; ?>>Presupuesto</option>			
+						<option value="Instrumento" <?php if ($act['tipo']=="Instrumento"){ echo "selected='selected'"; }; ?>>Instrumento</option>			
 					</select>		
 					<br>
 					<input class="btn btn-default" type="submit" name="enviar" value="Guardar Cambios">

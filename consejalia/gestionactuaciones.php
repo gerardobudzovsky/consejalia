@@ -43,8 +43,10 @@
 	        <th>Id Expediente</th>
 			<th>Titulo Expediente</th>	        
 			<th>Numero Expediente</th>
-	        <th>Nombre del proyecto</th>
-	       	<th>Fin</th>
+	        <!--
+			<th>Nombre del proyecto</th>
+	       	-->
+			<th>Fin</th>
 	        <th>Tipo de actuacion</th>
 	        <th>Opciones</th>
 	      </tr>
