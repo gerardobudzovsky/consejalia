@@ -36,16 +36,17 @@
 				<label>Numero:</label>
 				<input class="form-control" id="numero" type="text" name="numero" placeholder="nnnn-a-20XX">
 				<label>Origen:</label>
-				<!--This is a comment. Comments are not displayed in the browser-->
 				<!--<input class="form-control" id="area" type="text" name="area">-->
 				<!--
 				<select class="form-control" id="area" name="area" >
-					<?php 
+					<?php
+						/*
 						$areas = mysqli_query($conexion, "SELECT * FROM area ORDER BY nombre LIMIT 10000");
 						setlocale(LC_ALL, "spanish");
 						while($area=mysqli_fetch_array($areas)){
 							echo "<option id='".$area['idarea']."' value='" . $area['nombre'] . "'>" . $area['nombre'] . "</option>";
 						};
+						*/
 					?>
 				</select>
 				-->

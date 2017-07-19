@@ -61,7 +61,7 @@
 						?>
 					</select>
 
-					<label>Fin:</label>
+					<label>Fin/Destino/Enviado a:</label>
 					<input class="form-control" id="fin" type="text" name="fin" value="<?php echo $act['fin']; ?>">	
 					<label>Tipo de Actuacion:</label>
 					<select class="form-control" id="tipo" name="tipo">
