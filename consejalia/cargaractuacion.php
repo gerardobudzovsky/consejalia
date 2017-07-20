@@ -28,7 +28,7 @@
 			<form action="" method="POST">
 				<div class="form-group">
 					<h1>Carga de Actuacion</h1>
-					<h2>Campos comunes a todos las actuaciones</h2>
+					<h2>Campos comunes a todas las actuaciones</h2>
 					<label>Numero de Expediente:</label>
 					<select class="form-control" id="idexpediente" name="idexpediente" >
 						<?php 
@@ -45,8 +45,8 @@
 					<input class="form-control" id="fin" type="text" name="fin">
 					<label for="fecha">Fecha de Presentacion:</label>
 					<input class="form-control" id="fecha" type="date" name="fecha">
-					<label>Reseña:</label>
-					<input class="form-control" type="text" id="resena" name="resena">
+					<label for="resena">Reseña:</label>
+					<textarea class="form-control" id="resena" name="resena"></textarea>
 					<label>Tipo de Actuacion:</label>
 					<select class="form-control" id="tipo" name="tipo">
 						<option value="Pase">Pase</option>
@@ -90,14 +90,66 @@
 					</datalist>
 					<h2>Campos para Instrumentos</h2>
 					<h3>Campos para Nota</h3>
+					<label for="ayn">Apellido y Nombre:</label>
+					<input class="form-control" type="text" id="ayn" name="ayn">
+					<label for="dni">DNI (sin puntos):</label>
+					<input class="form-control" type="number" id="dni" name="dni" min="0" max="999999999">
+					<label for="direccion">Direccion:</label>
+					<input class="form-control" type="text" id="direccion" name="direccion">
+					<label for="telefono">Numero de telefono:</label>
+					<input class="form-control" type="text" id="telefono" name="telefono">
 					<h3>Campos para Memorandum</h3>
 					<h3>Campos para Resolucion</h3>
+					<label for="numeror">Numero de Resolucion:</label>
+					<input class="form-control" type="number" id="numeror" name="numeror">
+					<label for="numeroador">Numero de Actuacion de Origen:</label>
+					<input class="form-control" type="text" id="numeroador"  name="numeroador" placeholder="nnnn-a-20XX">
 					<h3>Campos para Proyecto</h3>
 					<h3>Campos para Proyecto de Ordenanza</h3>
+					<label for="tipopdo">Tipo:</label>
+					<select class="form-control" id="tipopdo" name="tipopdo">
+						<option value="Ordenanza">Ordenanza</option>
+						<option value="Resolucion">Resolucion</option>
+						<option value="Declaracion">Declaracion</option>
+					</select>
+					<label for="concejal">Consejal:</label>
+					<input class="form-control" type="text" id="concejal" name="concejal">
+					<label for="barrio">Barrio:</label>
+					<input class="form-control" type="text" id="barrio" name="barrio">
+					<label for="temas">Temas:</label>
+					<input class="form-control" type="text" id="temas" name="temas">
+					<label for="tiposes">Tipo:</label>
+					<select class="form-control" id="tiposes" name="tiposes">
+						<option value="Sesion Ordinaria">Sesion Ordinaria</option>
+						<option value="Sesion Especial">Sesion Especial</option>
+						<option value="Audiencia Publica">Audiencia Publica</option>
+					</select>
 					<h3>Campos para Ordenanza</h3>
+					<label for="numeroord">Numero de Ordenanza:</label>
+					<input class="form-control" type="number" id="numeroord" name="numeroord">
+					<label for="numerores">Numero de Resolucion:</label>
+					<input class="form-control" type="number" id="numerores" name="numerores">
+					<label for="numeroadoo">Numero de Actuacion de Origen:</label>
+					<input class="form-control" type="text" id="numeroadoo"  name="numeroadoo" placeholder="nnnn-a-20XX">
+					<h3>Campos para Ley</h3>
+					<label for="numeroley">Numero de Ley:</label>
+					<input class="form-control" type="text" id="numeroley" name="numeroley">
 					<h3>Campos para Declaracion</h3>
+					<label for="numerodecl">Numero de Declaracion:</label>
+					<input class="form-control" type="text" id="numerodecl" name="numerodecl">
+					<label for="numeroadod">Numero de Actuacion de Origen:</label>
+					<input class="form-control" type="text" id="numeroadod"  name="numeroadod" placeholder="nnnn-a-20XX">
 					<h3>Campos para Invitacion</h3>
+					<label for="qi">Quien invita:</label>
+					<input class= "form-control" list="qis" id="qi" name="qi">
+					<datalist id="qis">
+						<option value="Secretaria de Gobierno">
+						<option value="Administracion Provincial del Agua">
+						<option value="SAMEEP">
+					</datalist>					
 					<h3>Campos para Oficio</h3>
+					<label for="numeroofi">Numero de Oficio:</label>
+					<input class="form-control" type="text" id="numeroofi" name="numeroofi">
 					<br>
 					<input class="btn btn-default" type="submit" name="enviar" value="Cargar Actuacion">
 				</div>	

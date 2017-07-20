@@ -59,7 +59,7 @@
 					<option value="Area de Personal">
 				</datalist>
 				<label>Reseña sobre el título:</label>
-				<textarea class="form-control" name="resena"></textarea>
+				<textarea class="form-control" id="resena" name="resena"></textarea>
 				<label>Estado:</label>
 				<select class="form-control" id="estado" name="estado">
 					<option value="Ingresado">Ingresado</option>
