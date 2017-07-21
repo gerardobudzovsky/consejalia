@@ -1,13 +1,13 @@
 <?php 
 	include "conexion.php" ;
+
+		//guardamos el formulario
+	if (isset($_POST['enviar'])) {
 		//consigue el id del expediente mediante el numero de expediente
 		$expedientes = mysqli_query($conexion, "SELECT * FROM expediente WHERE numero='". $_POST['nmexpediente'] ."' ORDER BY numero LIMIT 1");
 		setlocale(LC_ALL, "spanish");
-		$expediente=mysqli_fetch_array($expedientes)
-		
+		$expediente=mysqli_fetch_array($expedientes);
 		//guardamos el formulario
-	if (isset($_POST['enviar'])) {
-
 		mysqli_query($conexion, "INSERT INTO actuacion(idexpediente, fin, tipo) VALUES(
 			'".$expediente['idexpediente']."',
 			'".$_POST['fin']."',
