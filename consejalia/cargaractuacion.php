@@ -118,7 +118,7 @@
 					<input class="form-control" type="text" id="barrio" name="barrio">
 					<label for="temas">Temas:</label>
 					<input class="form-control" type="text" id="temas" name="temas">
-					<label for="tiposes">Tipo:</label>
+					<label for="tiposes">Tipo de sesiones/audiencia:</label>
 					<select class="form-control" id="tiposes" name="tiposes">
 						<option value="Sesion Ordinaria">Sesion Ordinaria</option>
 						<option value="Sesion Especial">Sesion Especial</option>
