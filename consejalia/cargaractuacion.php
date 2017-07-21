@@ -52,23 +52,6 @@
 						<option value="Pase">Pase</option>
 						<option value="Instrumento">Instrumento</option>					
 					</select>
-					<label for="tipoins">Tipo de instrumento:</label>
-					<select class="form-control" id="tipoins" name="tipoins">
-						<option value="Nota">Nota</option>
-						<option value="Memorandum">Memorandum</option>
-						<option value="Resolucion">Resolucion</option>
-						<option value="Disposicion">Disposicion</option>					
-						<option value="Proyecto">Proyecto</option>					
-						<option value="Disposicion">Disposicion</option>
-						<option value="Proyecto de Ordenanza">Proyecto de Ordenanza</option>					
-						<option value="Ordenanza">Ordenanza</option>					
-						<option value="Ley">Ley</option>
-						<option value="Ordenanza">Ordenanza</option>					
-						<option value="Declaracion">Declaracion</option>					
-						<option value="Invitacion">Invitacion</option>
-						<option value="Oficio">Oficio</option>
-						<option value="Otro">Otro</option>						
-					</select>
 					<h2>Campos para pases</h2>
 					<label for="origen">Origen:</label>
 					<input class= "form-control" list="areas" id="origen" name="origen">
@@ -89,6 +72,23 @@
 						<option value="Area de Personal">
 					</datalist>
 					<h2>Campos para Instrumentos</h2>
+					<label for="tipoins">Tipo de instrumento:</label>
+					<select class="form-control" id="tipoins" name="tipoins">
+						<option value="Nota">Nota</option>
+						<option value="Memorandum">Memorandum</option>
+						<option value="Resolucion">Resolucion</option>
+						<option value="Disposicion">Disposicion</option>					
+						<option value="Proyecto">Proyecto</option>					
+						<option value="Disposicion">Disposicion</option>
+						<option value="Proyecto de Ordenanza">Proyecto de Ordenanza</option>					
+						<option value="Ordenanza">Ordenanza</option>					
+						<option value="Ley">Ley</option>
+						<option value="Ordenanza">Ordenanza</option>					
+						<option value="Declaracion">Declaracion</option>					
+						<option value="Invitacion">Invitacion</option>
+						<option value="Oficio">Oficio</option>
+						<option value="Otro">Otro</option>						
+					</select>					
 					<h3>Campos para Nota</h3>
 					<label for="ayn">Apellido y Nombre:</label>
 					<input class="form-control" type="text" id="ayn" name="ayn">
