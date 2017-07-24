@@ -1,11 +1,8 @@
-<!--
-
--->
-
 <?php 
 	include "conexion.php" ;
 	
 	if (isset($_POST['enviar'])) {
+		
 		mysqli_query($conexion, "UPDATE actuacion
 			SET
 			idexpediente= '".$_POST['idexpediente']."',
@@ -14,6 +11,7 @@
 			WHERE idactuacion=".$_GET['idactuacion'].
 				  " AND idexpediente=".$_GET['idexpediente'].""
 		);
+		
 		header("Location: gestionactuaciones.php");
 	}
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-07-2017 a las 15:35:09
+-- Tiempo de generación: 24-07-2017 a las 06:57:50
 -- Versión del servidor: 10.1.24-MariaDB
 -- Versión de PHP: 7.1.6
 
@@ -30,41 +30,28 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `actuacion` (
   `idactuacion` int(11) NOT NULL,
-  `idexpediente` int(11) NOT NULL,
-  `nombreproy` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idexpediente` int(11) DEFAULT NULL,
+  `numero` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `fin` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `tipo` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL
+  `fecha` date DEFAULT NULL,
+  `resena` varchar(300) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `tipo` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `paseorigen` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pasedestino` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `usuario` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ultimamodif` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `actuacion`
 --
 
-INSERT INTO `actuacion` (`idactuacion`, `idexpediente`, `nombreproy`, `fin`, `tipo`) VALUES
-(3, 9, 'Salud para el municipio.', 'Aprobar la construcción de 100 metros de cloacas para el barrio Lomas del Mirador.', 'Instrumento'),
-(6, 5, 'Un proyecto', 'Un fin', 'Pase'),
-(7, 2, 'otro proyecto', 'otro fin', 'Informe de terceros');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `area`
---
-
-CREATE TABLE `area` (
-  `idarea` int(10) NOT NULL,
-  `nombre` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `area`
---
-
-INSERT INTO `area` (`idarea`, `nombre`) VALUES
-(1, 'EQUIPO DE PROYECTO'),
-(3, ' SECRETARIA'),
-(4, 'EQUIPO TERRITORIAL DEL BLOQUE'),
-(5, 'EQUIPO CCPA');
+INSERT INTO `actuacion` (`idactuacion`, `idexpediente`, `numero`, `fin`, `fecha`, `resena`, `tipo`, `paseorigen`, `pasedestino`, `usuario`, `ultimamodif`) VALUES
+(3, 9, NULL, 'Aprobar la construcción de 100 metros de cloacas para el barrio Lomas del Mirador.', NULL, NULL, 'Instrumento', NULL, NULL, NULL, NULL),
+(6, 5, NULL, 'Un fin', NULL, NULL, 'Pase', NULL, NULL, NULL, NULL),
+(7, 2, NULL, 'otro fin', NULL, NULL, 'Instrumento', NULL, NULL, NULL, NULL),
+(8, 13, NULL, 'un fin', NULL, NULL, 'Pase', NULL, NULL, NULL, NULL),
+(10, 9, NULL, 'otro finnnnn', NULL, 'una reseña de actuacion', 'Pase', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -75,24 +62,59 @@ INSERT INTO `area` (`idarea`, `nombre`) VALUES
 CREATE TABLE `expediente` (
   `idexpediente` int(11) NOT NULL,
   `titulo` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `numero` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `numero` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `area` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
   `resena` varchar(300) COLLATE utf8_spanish_ci DEFAULT NULL,
   `estado` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `fecha` date DEFAULT NULL
+  `fecha` date DEFAULT NULL,
+  `usuario` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ultimamodif` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `expediente`
 --
 
-INSERT INTO `expediente` (`idexpediente`, `titulo`, `numero`, `area`, `resena`, `estado`, `fecha`) VALUES
-(2, 'Expediente Nuevo', '0003/2017', 'Secretaria', 'bla bla bla bla', 'Ingresado', '2017-01-01'),
-(3, 'Un expediente', '0057/2017', 'Un area', 'una reseña', 'En tratamiento', '2017-06-20'),
-(4, 'Otro expediente', '0043/2016', 'Otra area', 'otra reseña', 'Para firma', '2016-12-14'),
-(5, 'Expediente nuevecito', '0010/2016', 'Area nuevecita', 'asjfaklñasdjfk alñkfjasñlkf a klñasdfjasdf klñasfjads klafjasdf', 'Archivado', '2016-05-19'),
-(9, 'S/ Construcción de cloaclas', '0002/2017', 'Equipo de Proyecto', 'Ante la necesidad de salubridad y mejoría en la calidad de vida, este honorable consejo debe tratar este proyecto de contrucción de 10 mil metros de cloaca.', 'Ingresado', '2017-01-02'),
-(13, 'Otro expediente nuevo', '0112/2017', 'Equipo de Proyecto', 'hola hola hola hola hola hola hola hola hola chau chau chau chau chau chau chau chau chau chau chau chau chau chau', 'En tratamiento', '2017-03-01');
+INSERT INTO `expediente` (`idexpediente`, `titulo`, `numero`, `area`, `resena`, `estado`, `fecha`, `usuario`, `ultimamodif`) VALUES
+(2, 'Expediente Nuevo', '0003/2017', 'Secretaria', 'bla bla bla bla', 'Ingresado', '2017-01-01', NULL, NULL),
+(3, 'Un expediente', '0057/2017', 'Un area', 'una reseña', 'En tratamiento', '2017-06-20', NULL, NULL),
+(4, 'Otro expediente', '0043/2016', 'Otra area', 'otra reseña', 'Para firma', '2016-12-14', NULL, NULL),
+(5, 'Expediente nuevecito', '0010/2016', 'Area nuevecita', 'asjfaklñasdjfk alñkfjasñlkf a klñasdfjasdf klñasfjads klafjasdf', 'Archivado', '2016-05-19', NULL, NULL),
+(9, 'S/ Construcción de cloaclas', '0002/2017', 'Equipo de Proyecto', 'Ante la necesidad de salubridad y mejoría en la calidad de vida, este honorable consejo debe tratar este proyecto de contrucción de 10 mil metros de cloaca.', 'Ingresado', '2017-01-02', NULL, NULL),
+(13, 'Otro expediente nuevo', '0112/2017', 'Equipo de Proyecto', '\"hola hola hola hola hola hola hola hola hola chau chau chau chau chau chau chau chau chau chau chau chau chau chau\"', 'Ingresado', '2017-03-01', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `instrumento`
+--
+
+CREATE TABLE `instrumento` (
+  `idinstrumento` int(11) NOT NULL,
+  `idactuacion` int(11) DEFAULT NULL,
+  `tipo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `notaayn` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `notadni` int(10) DEFAULT NULL,
+  `notadireccion` varchar(200) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `notatelefono` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `resnumero` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `resndado` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pdotipo` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pdoconcejal` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pdobarrio` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pdotemas` varchar(200) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pdotiposes` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ordnumero` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ordnumerores` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ordndado` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `leynumero` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `declnumero` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `declndado` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `invitacionqi` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `oficionro` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `usuario` varchar(50) DEFAULT NULL,
+  `ultimamodif` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Índices para tablas volcadas
@@ -102,20 +124,21 @@ INSERT INTO `expediente` (`idexpediente`, `titulo`, `numero`, `area`, `resena`, 
 -- Indices de la tabla `actuacion`
 --
 ALTER TABLE `actuacion`
-  ADD PRIMARY KEY (`idactuacion`,`idexpediente`),
-  ADD KEY `FK_actuacion` (`idexpediente`);
-
---
--- Indices de la tabla `area`
---
-ALTER TABLE `area`
-  ADD PRIMARY KEY (`idarea`);
+  ADD PRIMARY KEY (`idactuacion`) USING BTREE,
+  ADD KEY `FK_actuacion` (`idexpediente`) USING BTREE;
 
 --
 -- Indices de la tabla `expediente`
 --
 ALTER TABLE `expediente`
   ADD PRIMARY KEY (`idexpediente`);
+
+--
+-- Indices de la tabla `instrumento`
+--
+ALTER TABLE `instrumento`
+  ADD PRIMARY KEY (`idinstrumento`),
+  ADD KEY `FK_instrumento` (`idactuacion`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -125,17 +148,17 @@ ALTER TABLE `expediente`
 -- AUTO_INCREMENT de la tabla `actuacion`
 --
 ALTER TABLE `actuacion`
-  MODIFY `idactuacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT de la tabla `area`
---
-ALTER TABLE `area`
-  MODIFY `idarea` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idactuacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 --
 -- AUTO_INCREMENT de la tabla `expediente`
 --
 ALTER TABLE `expediente`
   MODIFY `idexpediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT de la tabla `instrumento`
+--
+ALTER TABLE `instrumento`
+  MODIFY `idinstrumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- Restricciones para tablas volcadas
 --
@@ -145,6 +168,12 @@ ALTER TABLE `expediente`
 --
 ALTER TABLE `actuacion`
   ADD CONSTRAINT `FK_actuacion` FOREIGN KEY (`idexpediente`) REFERENCES `expediente` (`idexpediente`);
+
+--
+-- Filtros para la tabla `instrumento`
+--
+ALTER TABLE `instrumento`
+  ADD CONSTRAINT `FK_instrumento` FOREIGN KEY (`idactuacion`) REFERENCES `actuacion` (`idactuacion`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

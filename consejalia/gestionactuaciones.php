@@ -62,7 +62,7 @@
 		        	echo "<td>".$arrexpe[1] ."</td>";	        	
 		        	echo "<td>".$arrexpe[2] ."</td>";
 		        	echo "<td>".$fila[3] ."</td>";
-		        	echo "<td>".$fila[4] ."</td>";
+		        	echo "<td>".$fila[6] ."</td>";
 		        	echo "<td><a href=editaractuacion.php?idactuacion=".$fila[0]."&idexpediente=".$fila[1].">Editar</a>";
 		        	echo "&nbsp;&nbsp;&nbsp";
 		        	echo "<a href=borraractuacion.php?idactuacion=".$fila[0]."&idexpediente=".$fila[1].">Borrar</a></td>";
