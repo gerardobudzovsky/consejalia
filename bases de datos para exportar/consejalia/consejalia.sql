@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-07-2017 a las 06:57:50
--- Versión del servidor: 10.1.24-MariaDB
--- Versión de PHP: 7.1.6
+-- Tiempo de generación: 25-07-2017 a las 00:07:07
+-- Versión del servidor: 10.1.25-MariaDB
+-- Versión de PHP: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -51,7 +51,8 @@ INSERT INTO `actuacion` (`idactuacion`, `idexpediente`, `numero`, `fin`, `fecha`
 (6, 5, NULL, 'Un fin', NULL, NULL, 'Pase', NULL, NULL, NULL, NULL),
 (7, 2, NULL, 'otro fin', NULL, NULL, 'Instrumento', NULL, NULL, NULL, NULL),
 (8, 13, NULL, 'un fin', NULL, NULL, 'Pase', NULL, NULL, NULL, NULL),
-(10, 9, NULL, 'otro finnnnn', NULL, 'una reseña de actuacion', 'Pase', NULL, NULL, NULL, NULL);
+(10, 9, NULL, 'otro finnnnn', NULL, 'una reseña de actuacion', 'Pase', NULL, NULL, NULL, NULL),
+(56, 9, '1234 2', 'un fin 2', '2017-07-02', 'una reseña 2', 'Pase', 'un origen de pase 2', 'un destino de pase 2', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,7 @@ INSERT INTO `expediente` (`idexpediente`, `titulo`, `numero`, `area`, `resena`, 
 (4, 'Otro expediente', '0043/2016', 'Otra area', 'otra reseña', 'Para firma', '2016-12-14', NULL, NULL),
 (5, 'Expediente nuevecito', '0010/2016', 'Area nuevecita', 'asjfaklñasdjfk alñkfjasñlkf a klñasdfjasdf klñasfjads klafjasdf', 'Archivado', '2016-05-19', NULL, NULL),
 (9, 'S/ Construcción de cloaclas', '0002/2017', 'Equipo de Proyecto', 'Ante la necesidad de salubridad y mejoría en la calidad de vida, este honorable consejo debe tratar este proyecto de contrucción de 10 mil metros de cloaca.', 'Ingresado', '2017-01-02', NULL, NULL),
-(13, 'Otro expediente nuevo', '0112/2017', 'Equipo de Proyecto', '\"hola hola hola hola hola hola hola hola hola chau chau chau chau chau chau chau chau chau chau chau chau chau chau\"', 'Ingresado', '2017-03-01', NULL, NULL);
+(13, 'Otro expediente nuevo', '0112/2017', 'Equipo de Proyecto', 'hola hola hola hola hola hola hola hola hola chau chau chau chau chau chau chau chau chau chau chau chau chau', 'Ingresado', '2017-03-01', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -148,7 +149,7 @@ ALTER TABLE `instrumento`
 -- AUTO_INCREMENT de la tabla `actuacion`
 --
 ALTER TABLE `actuacion`
-  MODIFY `idactuacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `idactuacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT de la tabla `expediente`
 --
@@ -158,7 +159,7 @@ ALTER TABLE `expediente`
 -- AUTO_INCREMENT de la tabla `instrumento`
 --
 ALTER TABLE `instrumento`
-  MODIFY `idinstrumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idinstrumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- Restricciones para tablas volcadas
 --
