@@ -15,8 +15,7 @@
 		?>
 
 	<div class="container">	
-		<h1>Actuaciones</h1>
-		
+		<h1>Actuaciones</h1>		
 		<div class="form-inline">
 			<p id="demo"></p>
 			<input class="form-control" type="text" id="Titulo" onkeyup="obra()" placeholder="Buscar...">

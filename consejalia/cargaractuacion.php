@@ -1,5 +1,5 @@
 <?php 
-	include "conexion.php" ;
+	include "conexion.php";
 
 		//guardamos el formulario
 	if (isset($_POST['enviar'])) {
