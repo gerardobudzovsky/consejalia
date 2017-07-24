@@ -1,7 +1,8 @@
 <?php 
-	include "conexion.php" ;	
+	include "conexion.php";	
 
 	if (isset($_POST['enviar'])) {
+		
 		mysqli_query($conexion, "UPDATE expediente 
 			SET 
 			titulo='".$_POST['titulo']."',
@@ -12,7 +13,9 @@
 			fecha='".$_POST['fecha']."'
 			WHERE idexpediente=".$_GET['idexpediente'].""
 		);
+		
 		header("Location: consejaliabeta.php");
+		
 	}
 ?>
 <!DOCTYPE html>
@@ -54,7 +57,7 @@
 						<option value="Area de Personal">
 					</datalist>
 					<label for="resena">Reseña sobre el título:</label>
-					<textarea class="form-control" id="resena" name="resena">"<?php echo $exp['resena']; ?>"</textarea>					
+					<textarea class="form-control" id="resena" name="resena"><?php echo $exp['resena']; ?></textarea>					
 					<label for="estado">Estado:</label>
 					<select class="form-control" id="estado" name="estado">
 						<option value="Ingresado" <?php if ($exp['estado']=="Ingresado"){ echo "selected='selected'"; }; ?>>Ingresado</option>

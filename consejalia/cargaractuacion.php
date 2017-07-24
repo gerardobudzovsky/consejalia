@@ -93,7 +93,7 @@
 					<input class="form-control" id="fecha" type="date" name="fecha">
 					<label for="resena">Reseña:</label>
 					<textarea class="form-control" id="resena" name="resena"></textarea>
-					<label>Tipo de Actuacion:</label>
+					<label for="tipo">Tipo de Actuacion:</label>
 					<select class="form-control" autocomplete="off" id="tipo" name="tipo" onchange="actuacion()">
 						<option selected value="Pase">Pase</option>
 						<option value="Instrumento">Instrumento</option>					
@@ -130,7 +130,6 @@
 								<option value="Resolucion">Resolucion</option>
 								<option value="Disposicion">Disposicion</option>
 								<option value="Proyecto">Proyecto</option>
-								<option value="Disposicion">Disposicion</option>
 								<option value="Proyecto de Ordenanza">Proyecto de Ordenanza</option>
 								<option value="Ordenanza">Ordenanza</option>
 								<option value="Ley">Ley</option>
