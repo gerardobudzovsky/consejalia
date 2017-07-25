@@ -18,11 +18,11 @@
 		<h1>Actuaciones</h1>		
 		<div class="form-inline">
 			<p id="demo"></p>
-			<input class="form-control" type="text" id="Titulo" onkeyup="obra()" placeholder="Buscar...">
+			<input class="form-control" type="text" id="titulo" onkeyup="obra()" placeholder="Buscar...">
 			<label>Pase</label>
-			<input id="contacto" onchange="mostrar()" type="checkbox" name="" checked="checked">
-			<label>Actuacion</label>
-			<input id="referente" onchange="mostrar()" type="checkbox" name="" checked="checked">
+			<input id="pase" onchange="mostrar()" type="checkbox" name="" checked="checked">
+			<label>Instrumento</label>
+			<input id="instrumento" onchange="mostrar()" type="checkbox" name="" checked="checked">
 			<a class="btn btn-primary float-right" href="carganuevo.php">Cargar Nuevo Expediente</a>
 			<a class="btn btn-primary float-right" href="cargaractuacion.php">Cargar Nueva Actuacion</a>
 
@@ -69,74 +69,66 @@
 	  </div>
 	</div>
 	</body>
+	
+		<script>
+		
+		function mostrar(){
 
-				<script>
-				function obra() {
-				  // Declare variables
-				  var input, filter, table, tr, td, i;
-				  input = document.getElementById("Titulo");
-				  filter = input.value.toUpperCase();
-				  table = document.getElementById("mytable");
-				  tr = table.getElementsByTagName("tr");
+			table = document.getElementById("mytable");
+		 	tr = table.getElementsByTagName("tr");
+		 	
+			for (i = 1; i < tr.length; i++) {
+		 		tr[i].setAttribute("hidden", true);
+		 	}
 
-				  // Loop through all table rows, and hide those who don't match the search query
-				  for (i = 0; i < tr.length; i++) {
-				    td0 = tr[i].getElementsByTagName("td")[0];
-				    td1 = tr[i].getElementsByTagName("td")[1];
-				    td2 = tr[i].getElementsByTagName("td")[2];
-				    td3 = tr[i].getElementsByTagName("td")[3];
-				    td4 = tr[i].getElementsByTagName("td")[4];
-				    td5 = tr[i].getElementsByTagName("td")[5];
-				    td6 = tr[i].getElementsByTagName("td")[6];
-				    td7 = tr[i].getElementsByTagName("td")[7];
-				    td8 = tr[i].getElementsByTagName("td")[8];
-				    
-				    if (td0) {
-				      if ((td0.innerHTML.toUpperCase().indexOf(filter) > -1) || 
+		 	for (i = 1; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[5].innerHTML;
+				if (document.getElementById('pase').checked && (td.toUpperCase() == "PASE")) {
+			      tr[i].removeAttribute("hidden");
+				} 
+				if (document.getElementById('instrumento').checked && (td.toUpperCase() == "INSTRUMENTO")) {
+					tr[i].removeAttribute("hidden");
+				}  
+			}				  
+		}
+
+		function obra() {
+			// Declare variables
+			var input, filter, table, tr, td, i;
+			input = document.getElementById("titulo");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("mytable");
+			tr = table.getElementsByTagName("tr");
+			
+			// Loop through all table rows, and hide those who don't match the search query
+			for (i = 0; i < tr.length; i++) {
+			    td0 = tr[i].getElementsByTagName("td")[0];
+			    td1 = tr[i].getElementsByTagName("td")[1];
+			    td2 = tr[i].getElementsByTagName("td")[2];
+			    td3 = tr[i].getElementsByTagName("td")[3];
+			    td4 = tr[i].getElementsByTagName("td")[4];
+			    td5 = tr[i].getElementsByTagName("td")[5];
+			    td6 = tr[i].getElementsByTagName("td")[6];
+
+			    if (td0) {
+					if (
+						(td0.innerHTML.toUpperCase().indexOf(filter) > -1) || 
 				      	(td1.innerHTML.toUpperCase().indexOf(filter) > -1) || 
 				      	(td2.innerHTML.toUpperCase().indexOf(filter) > -1) || 
 				      	(td3.innerHTML.toUpperCase().indexOf(filter) > -1) || 
 				      	(td4.innerHTML.toUpperCase().indexOf(filter) > -1) || 
 				      	(td5.innerHTML.toUpperCase().indexOf(filter) > -1) || 
-				      	(td6.innerHTML.toUpperCase().indexOf(filter) > -1) || 
-				      	(td7.innerHTML.toUpperCase().indexOf(filter) > -1) || 
-				      	(td8.innerHTML.toUpperCase().indexOf(filter) > -1) ) {
-				        tr[i].style.display = "";
-				      } else {
-				        tr[i].style.display = "none";
-				      }
-				    }
-				  }
+				      	(td6.innerHTML.toUpperCase().indexOf(filter) > -1)
+						) {
+						tr[i].style.display = ""; 
+					} 
+					else { 
+						tr[i].style.display = "none";
+					}
 				}
-
-				function mostrar()
-				{
-					table = document.getElementById("mytable");
-				 	tr = table.getElementsByTagName("tr");
-				 	for (i = 1; i < tr.length; i++) {
-				 		tr[i].setAttribute("hidden", true);
-				 	}
-				 	for (i = 1; i < tr.length; i++) {
-				 		td = tr[i].getElementsByTagName("td")[12].innerHTML;
-				 		if (document.getElementById('contacto').checked && (td.toUpperCase() == "CONTACTO")) 
-						  {
-						      tr[i].removeAttribute("hidden");
-						  } 
-						if (document.getElementById('referente').checked && (td.toUpperCase() == "REFERENTE")) 
-						  {
-						      tr[i].removeAttribute("hidden");
-						  } 
-						if (document.getElementById('colaborador').checked && (td.toUpperCase() == "COLABORADOR")) 
-						  {
-						      tr[i].removeAttribute("hidden");
-						  } 
-						if (document.getElementById('otro').checked && (td.toUpperCase() == "OTRO")) 
-						  {
-						      tr[i].removeAttribute("hidden");
-						  } 
-				 	}
-				  
-				}
-
-				</script>
+			}
+		}
+	
+	</script>
+	
 </html>
