@@ -20,14 +20,16 @@
 		<div class="form-inline">
 			<p id="demo"></p>
 			<input class="form-control" type="text" id="Titulo" onkeyup="obra()" placeholder="Buscar...">
-			<label>Filtro 1</label>
-			<input id="contacto" onchange="mostrar()" type="checkbox" name="" checked="checked">
-			<label>Filtro 2</label>
-			<input id="referente" onchange="mostrar()" type="checkbox" name="" checked="checked">
-			<label>Filtro 3</label>
-			<input id="colaborador" onchange="mostrar()" type="checkbox" name="" checked="checked">
-			<label>Filtro 4</label>
-			<input id="otro" onchange="mostrar()" type="checkbox" name="" checked="checked">			
+			<label>Ingresado</label>
+			<input id="ingresado" onchange="mostrar()" type="checkbox" name="" checked="checked">
+			<label>En tratamiento</label>
+			<input id="entratamiento" onchange="mostrar()" type="checkbox" name="" checked="checked">
+			<label>Para firma</label>
+			<input id="parafirma" onchange="mostrar()" type="checkbox" name="" checked="checked">
+			<label>Resuelto</label>
+			<input id="resuelto" onchange="mostrar()" type="checkbox" name="" checked="checked">
+			<label>Archivado</label>
+			<input id="archivado" onchange="mostrar()" type="checkbox" name="" checked="checked">			
 			<a class="btn btn-primary float-right" href="carganuevo.php">Cargar Nuevo Expediente</a>
 			<a class="btn btn-primary float-right" href="cargaractuacion.php">Cargar Nueva Actuacion</a>
 
@@ -39,7 +41,7 @@
 	  <table class="table table-inverse" id="mytable">
 	    <thead>
 	      <tr class="azul">
-	        <th>ID</th>
+	        <th>Id</th>
 	        <th>Titulo</th>
 	        <th>Numero</th>
 	        <th>Origen</th>
@@ -118,33 +120,33 @@
 				  }
 				}
 
-				function mostrar()
-				{
+				function mostrar(){
+
 					table = document.getElementById("mytable");
 				 	tr = table.getElementsByTagName("tr");
+
 				 	for (i = 1; i < tr.length; i++) {
 				 		tr[i].setAttribute("hidden", true);
 				 	}
+					
 				 	for (i = 1; i < tr.length; i++) {
-				 		td = tr[i].getElementsByTagName("td")[12].innerHTML;
-				 		if (document.getElementById('contacto').checked && (td.toUpperCase() == "CONTACTO")) 
-						  {
+				 		td = tr[i].getElementsByTagName("td")[5].innerHTML;
+				 		if (document.getElementById('ingresado').checked && (td.toUpperCase() == "INGRESADO")) {
 						      tr[i].removeAttribute("hidden");
-						  } 
-						if (document.getElementById('referente').checked && (td.toUpperCase() == "REFERENTE")) 
-						  {
+						} 
+						if (document.getElementById('entratamiento').checked && (td.toUpperCase() == "EN TRATAMIENTO")) {
 						      tr[i].removeAttribute("hidden");
-						  } 
-						if (document.getElementById('colaborador').checked && (td.toUpperCase() == "COLABORADOR")) 
-						  {
+						} 
+						if (document.getElementById('parafirma').checked && (td.toUpperCase() == "PARA FIRMA")) {
 						      tr[i].removeAttribute("hidden");
-						  } 
-						if (document.getElementById('otro').checked && (td.toUpperCase() == "OTRO")) 
-						  {
+						} 
+						if (document.getElementById('resuelto').checked && (td.toUpperCase() == "RESUELTO")) {
 						      tr[i].removeAttribute("hidden");
-						  } 
-				 	}
-				  
+						} 
+						if (document.getElementById('archivado').checked && (td.toUpperCase() == "ARCHIVADO")) {
+						      tr[i].removeAttribute("hidden");
+						} 
+				 	}				  
 				}
 
 				</script>

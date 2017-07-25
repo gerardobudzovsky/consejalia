@@ -19,14 +19,10 @@
 		<div class="form-inline">
 			<p id="demo"></p>
 			<input class="form-control" type="text" id="Titulo" onkeyup="obra()" placeholder="Buscar...">
-			<label>Filtro 1</label>
+			<label>Pase</label>
 			<input id="contacto" onchange="mostrar()" type="checkbox" name="" checked="checked">
-			<label>Filtro 2</label>
+			<label>Actuacion</label>
 			<input id="referente" onchange="mostrar()" type="checkbox" name="" checked="checked">
-			<label>Filtro 3</label>
-			<input id="colaborador" onchange="mostrar()" type="checkbox" name="" checked="checked">
-			<label>Filtro 4</label>
-			<input id="otro" onchange="mostrar()" type="checkbox" name="" checked="checked">			
 			<a class="btn btn-primary float-right" href="carganuevo.php">Cargar Nuevo Expediente</a>
 			<a class="btn btn-primary float-right" href="cargaractuacion.php">Cargar Nueva Actuacion</a>
 
