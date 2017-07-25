@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-07-2017 a las 22:56:54
+-- Tiempo de generación: 26-07-2017 a las 00:04:25
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 7.1.7
 
@@ -92,7 +92,7 @@ INSERT INTO `expediente` (`idexpediente`, `titulo`, `numero`, `area`, `resena`, 
 
 CREATE TABLE `instrumento` (
   `idinstrumento` int(11) NOT NULL,
-  `idactuacion` int(11) DEFAULT NULL,
+  `idactuacion` int(11) NOT NULL,
   `tipo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `notaayn` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `notadni` int(10) DEFAULT NULL,
@@ -126,7 +126,7 @@ CREATE TABLE `instrumento` (
 --
 ALTER TABLE `actuacion`
   ADD PRIMARY KEY (`idactuacion`) USING BTREE,
-  ADD KEY `FK_actuacion` (`idexpediente`) USING BTREE;
+  ADD KEY `fk_actuacion` (`idexpediente`);
 
 --
 -- Indices de la tabla `expediente`
@@ -139,7 +139,7 @@ ALTER TABLE `expediente`
 --
 ALTER TABLE `instrumento`
   ADD PRIMARY KEY (`idinstrumento`),
-  ADD KEY `FK_instrumento` (`idactuacion`);
+  ADD UNIQUE KEY `instrumento_unique_actuacion` (`idactuacion`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -149,7 +149,7 @@ ALTER TABLE `instrumento`
 -- AUTO_INCREMENT de la tabla `actuacion`
 --
 ALTER TABLE `actuacion`
-  MODIFY `idactuacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `idactuacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT de la tabla `expediente`
 --
@@ -159,7 +159,7 @@ ALTER TABLE `expediente`
 -- AUTO_INCREMENT de la tabla `instrumento`
 --
 ALTER TABLE `instrumento`
-  MODIFY `idinstrumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idinstrumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- Restricciones para tablas volcadas
 --
@@ -168,13 +168,13 @@ ALTER TABLE `instrumento`
 -- Filtros para la tabla `actuacion`
 --
 ALTER TABLE `actuacion`
-  ADD CONSTRAINT `FK_actuacion` FOREIGN KEY (`idexpediente`) REFERENCES `expediente` (`idexpediente`);
+  ADD CONSTRAINT `fk_actuacion` FOREIGN KEY (`idexpediente`) REFERENCES `expediente` (`idexpediente`);
 
 --
 -- Filtros para la tabla `instrumento`
 --
 ALTER TABLE `instrumento`
-  ADD CONSTRAINT `FK_instrumento` FOREIGN KEY (`idactuacion`) REFERENCES `actuacion` (`idactuacion`);
+  ADD CONSTRAINT `fk_instrumento` FOREIGN KEY (`idactuacion`) REFERENCES `actuacion` (`idactuacion`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
