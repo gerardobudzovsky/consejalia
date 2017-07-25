@@ -19,7 +19,7 @@
 		
 		<div class="form-inline">
 			<p id="demo"></p>
-			<input class="form-control" type="text" id="Titulo" onkeyup="obra()" placeholder="Buscar...">
+			<input class="form-control" type="text" id="titulo" onkeyup="obra()" placeholder="Buscar...">
 			<label>Ingresado</label>
 			<input id="ingresado" onchange="mostrar()" type="checkbox" name="" checked="checked">
 			<label>En tratamiento</label>
@@ -81,74 +81,76 @@
 	</div>
 	</body>
 
-				<script>
-				function obra() {
-				  // Declare variables
-				  var input, filter, table, tr, td, i;
-				  input = document.getElementById("Titulo");
-				  filter = input.value.toUpperCase();
-				  table = document.getElementById("mytable");
-				  tr = table.ElementsByTagName("tr");
+	<script>
+		
+		function mostrar(){
 
-				  // Loop through all table rows, and hide those who don't match the search query
-				  for (i = 0; i < tr.length; i++) {
-				    td0 = tr[i].getElementsByTagName("td")[0];
-				    td1 = tr[i].getElementsByTagName("td")[1];
-				    td2 = tr[i].getElementsByTagName("td")[2];
-				    td3 = tr[i].getElementsByTagName("td")[3];
-				    td4 = tr[i].getElementsByTagName("td")[4];
-				    td5 = tr[i].getElementsByTagName("td")[5];
-				    td6 = tr[i].getElementsByTagName("td")[6];
-				    td7 = tr[i].getElementsByTagName("td")[7];
-				    td8 = tr[i].getElementsByTagName("td")[8];
-				    
-				    if (td0) {
-				      if ((td0.innerHTML.toUpperCase().indexOf(filter) > -1) || 
+			table = document.getElementById("mytable");
+		 	tr = table.getElementsByTagName("tr");
+		 	
+			for (i = 1; i < tr.length; i++) {
+		 		tr[i].setAttribute("hidden", true);
+		 	}
+
+		 	for (i = 1; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[5].innerHTML;
+				if (document.getElementById('ingresado').checked && (td.toUpperCase() == "INGRESADO")) {
+			      tr[i].removeAttribute("hidden");
+				} 
+				if (document.getElementById('entratamiento').checked && (td.toUpperCase() == "EN TRATAMIENTO")) {
+					tr[i].removeAttribute("hidden");
+				} 
+				if (document.getElementById('parafirma').checked && (td.toUpperCase() == "PARA FIRMA")) {
+				    tr[i].removeAttribute("hidden");
+				} 
+				if (document.getElementById('resuelto').checked && (td.toUpperCase() == "RESUELTO")) {
+				    tr[i].removeAttribute("hidden");
+				} 
+				if (document.getElementById('archivado').checked && (td.toUpperCase() == "ARCHIVADO")) {
+				    tr[i].removeAttribute("hidden");
+				} 
+			}				  
+		}
+
+		function obra() {
+			// Declare variables
+			var input, filter, table, tr, td, i;
+			input = document.getElementById("titulo");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("mytable");
+			tr = table.getElementsByTagName("tr");
+			
+			// Loop through all table rows, and hide those who don't match the search query
+			for (i = 0; i < tr.length; i++) {
+			    td0 = tr[i].getElementsByTagName("td")[0];
+			    td1 = tr[i].getElementsByTagName("td")[1];
+			    td2 = tr[i].getElementsByTagName("td")[2];
+			    td3 = tr[i].getElementsByTagName("td")[3];
+			    td4 = tr[i].getElementsByTagName("td")[4];
+			    td5 = tr[i].getElementsByTagName("td")[5];
+			    td6 = tr[i].getElementsByTagName("td")[6];
+			    td7 = tr[i].getElementsByTagName("td")[7];
+
+			    if (td0) {
+					if (
+						(td0.innerHTML.toUpperCase().indexOf(filter) > -1) || 
 				      	(td1.innerHTML.toUpperCase().indexOf(filter) > -1) || 
 				      	(td2.innerHTML.toUpperCase().indexOf(filter) > -1) || 
 				      	(td3.innerHTML.toUpperCase().indexOf(filter) > -1) || 
 				      	(td4.innerHTML.toUpperCase().indexOf(filter) > -1) || 
 				      	(td5.innerHTML.toUpperCase().indexOf(filter) > -1) || 
 				      	(td6.innerHTML.toUpperCase().indexOf(filter) > -1) || 
-				      	(td7.innerHTML.toUpperCase().indexOf(filter) > -1) || 
-				      	(td8.innerHTML.toUpperCase().indexOf(filter) > -1) ) {
-				        tr[i].style.display = "";
-				      } else {
-				        tr[i].style.display = "none";
-				      }
-				    }
-				  }
+				      	(td7.innerHTML.toUpperCase().indexOf(filter) > -1)
+						) {
+						tr[i].style.display = ""; 
+					} 
+					else { 
+						tr[i].style.display = "none";
+					}
 				}
-
-				function mostrar(){
-
-					table = document.getElementById("mytable");
-				 	tr = table.getElementsByTagName("tr");
-
-				 	for (i = 1; i < tr.length; i++) {
-				 		tr[i].setAttribute("hidden", true);
-				 	}
-					
-				 	for (i = 1; i < tr.length; i++) {
-				 		td = tr[i].getElementsByTagName("td")[5].innerHTML;
-				 		if (document.getElementById('ingresado').checked && (td.toUpperCase() == "INGRESADO")) {
-						      tr[i].removeAttribute("hidden");
-						} 
-						if (document.getElementById('entratamiento').checked && (td.toUpperCase() == "EN TRATAMIENTO")) {
-						      tr[i].removeAttribute("hidden");
-						} 
-						if (document.getElementById('parafirma').checked && (td.toUpperCase() == "PARA FIRMA")) {
-						      tr[i].removeAttribute("hidden");
-						} 
-						if (document.getElementById('resuelto').checked && (td.toUpperCase() == "RESUELTO")) {
-						      tr[i].removeAttribute("hidden");
-						} 
-						if (document.getElementById('archivado').checked && (td.toUpperCase() == "ARCHIVADO")) {
-						      tr[i].removeAttribute("hidden");
-						} 
-				 	}				  
-				}
-
-				</script>
+			}
+		}
+	
+	</script>
 
 </html>
