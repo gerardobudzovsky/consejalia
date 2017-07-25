@@ -17,18 +17,17 @@
 				  " AND idexpediente=".$_GET['idexpediente'].""
 		);
 		
-		/*
+		
 		if ($_POST['tipo'] == 'Instrumento') {			
 			
 			mysqli_query($conexion, "UPDATE instrumento
-			SET
-			tipoins= '".$_POST['tipoins']."'
-			WHERE idinstrumento=".$_GET['idinstrumento'].
-				  " AND idactuacion=".$_GET['idactuacion'].""
+			SET 
+			tipo= '".$_POST['tipoins']."'
+			WHERE idactuacion=".$_GET['idactuacion']."" 
 			);
 			
 		}
-		*/
+		
 		header("Location: gestionactuaciones.php");
 		
 	}
@@ -54,14 +53,13 @@
 			setlocale(LC_ALL, "spanish");
 			$act= $actuacion;
 			
-			/*
+			
 			$instrumentos=mysqli_query($conexion, "SELECT * FROM instrumento 
-				WHERE idinstrumento=".$_GET['idinstrumento'].
-				" AND idactuacion=".$_GET['idactuacion']." LIMIT 1");
+				WHERE idactuacion=".$_GET['idactuacion']." LIMIT 1");
 			$instrumento=mysqli_fetch_array($instrumentos);
 			setlocale(LC_ALL, "spanish");
 			$inst= $instrumento;
-			*/
+			
 		?>
 
 		<div class="container">
@@ -121,7 +119,7 @@
 						</datalist>
 						
 					<!-- instrumentos -->
-					<!--
+					
 					<h2>Datos para Instrumentos</h2>
 							<label for="tipoins">Tipo de instrumento:</label>
 							<select class="form-control" id="tipoins" name="tipoins" autocomplete="off">
@@ -137,7 +135,6 @@
 								<option value="Invitacion" <?php if ($inst['tipo']=="Invitacion"){ echo "selected='selected'"; }; ?>>Invitacion</option>
 								<option value="Oficio" <?php if ($inst['tipo']=="Oficio"){ echo "selected='selected'"; }; ?>>Oficio</option>
 							</select>
-					-->
 					<br>
 					<input class="btn btn-default" type="submit" name="enviar" value="Guardar Cambios">
 				</div>	
