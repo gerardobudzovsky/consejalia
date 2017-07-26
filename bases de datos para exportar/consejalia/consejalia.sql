@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 3.5.1
+-- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 26-07-2017 a las 00:04:25
--- Versión del servidor: 10.1.25-MariaDB
--- Versión de PHP: 7.1.7
+-- Servidor: localhost
+-- Tiempo de generación: 26-07-2017 a las 03:10:44
+-- Versión del servidor: 5.5.24-log
+-- Versión de PHP: 5.4.3
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `consejalia`
@@ -28,8 +26,8 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `actuacion`
 --
 
-CREATE TABLE `actuacion` (
-  `idactuacion` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `actuacion` (
+  `idactuacion` int(11) NOT NULL AUTO_INCREMENT,
   `idexpediente` int(11) DEFAULT NULL,
   `numero` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `fin` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -39,8 +37,10 @@ CREATE TABLE `actuacion` (
   `paseorigen` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
   `pasedestino` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
   `usuario` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `ultimamodif` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `ultimamodif` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idactuacion`) USING BTREE,
+  KEY `fk_actuacion` (`idexpediente`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=61 ;
 
 --
 -- Volcado de datos para la tabla `actuacion`
@@ -52,7 +52,8 @@ INSERT INTO `actuacion` (`idactuacion`, `idexpediente`, `numero`, `fin`, `fecha`
 (7, 2, NULL, 'otro fin', NULL, NULL, 'Instrumento', NULL, NULL, NULL, NULL),
 (8, 13, NULL, 'un fin', NULL, NULL, 'Pase', NULL, NULL, NULL, NULL),
 (10, 9, NULL, 'otro finnnnn', NULL, 'una reseña de actuacion', 'Pase', NULL, NULL, NULL, NULL),
-(56, 9, '1234 2', 'un fin 2', '2017-07-02', 'una reseña 2', 'Pase', 'un origen de pase 2', 'un destino de pase 2', NULL, NULL);
+(56, 9, '1234 2', 'un fin 2', '2017-07-02', 'una reseña 2', 'Pase', 'un origen de pase 2', 'un destino de pase 2', NULL, NULL),
+(60, 2, '19nuevo', 'peronismo', '2017-07-13', 'peronico', 'Instrumento', '', '', NULL, '2017-07-26 02:08:13');
 
 -- --------------------------------------------------------
 
@@ -60,8 +61,8 @@ INSERT INTO `actuacion` (`idactuacion`, `idexpediente`, `numero`, `fin`, `fecha`
 -- Estructura de tabla para la tabla `expediente`
 --
 
-CREATE TABLE `expediente` (
-  `idexpediente` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `expediente` (
+  `idexpediente` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
   `numero` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `area` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -69,8 +70,9 @@ CREATE TABLE `expediente` (
   `estado` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   `usuario` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `ultimamodif` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `ultimamodif` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idexpediente`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=14 ;
 
 --
 -- Volcado de datos para la tabla `expediente`
@@ -90,8 +92,8 @@ INSERT INTO `expediente` (`idexpediente`, `titulo`, `numero`, `area`, `resena`, 
 -- Estructura de tabla para la tabla `instrumento`
 --
 
-CREATE TABLE `instrumento` (
-  `idinstrumento` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `instrumento` (
+  `idinstrumento` int(11) NOT NULL AUTO_INCREMENT,
   `idactuacion` int(11) NOT NULL,
   `tipo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `notaayn` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -114,52 +116,39 @@ CREATE TABLE `instrumento` (
   `invitacionqi` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `oficionro` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `usuario` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `ultimamodif` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ultimamodif` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idinstrumento`),
+  UNIQUE KEY `instrumento_unique_actuacion` (`idactuacion`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
--- Índices para tablas volcadas
+-- Volcado de datos para la tabla `instrumento`
 --
 
---
--- Indices de la tabla `actuacion`
---
-ALTER TABLE `actuacion`
-  ADD PRIMARY KEY (`idactuacion`) USING BTREE,
-  ADD KEY `fk_actuacion` (`idexpediente`);
+INSERT INTO `instrumento` (`idinstrumento`, `idactuacion`, `tipo`, `notaayn`, `notadni`, `notadireccion`, `notatelefono`, `resnumero`, `resndado`, `pdotipo`, `pdoconcejal`, `pdobarrio`, `pdotemas`, `pdotiposes`, `ordnumero`, `ordnumerores`, `ordndado`, `leynumero`, `declnumero`, `declndado`, `invitacionqi`, `oficionro`, `usuario`, `ultimamodif`) VALUES
+(23, 60, 'Resolucion', '', 0, '', '', '18', '19nuevo', 'Ordenanza', '', '', '', 'Sesion Ordinaria', '', '', '', '', '', '', '', '', NULL, '2017-07-26 02:08:13');
+
+-- --------------------------------------------------------
 
 --
--- Indices de la tabla `expediente`
---
-ALTER TABLE `expediente`
-  ADD PRIMARY KEY (`idexpediente`);
-
---
--- Indices de la tabla `instrumento`
---
-ALTER TABLE `instrumento`
-  ADD PRIMARY KEY (`idinstrumento`),
-  ADD UNIQUE KEY `instrumento_unique_actuacion` (`idactuacion`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
+-- Estructura de tabla para la tabla `login`
 --
 
+CREATE TABLE IF NOT EXISTS `login` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(100) NOT NULL,
+  `pass` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
 --
--- AUTO_INCREMENT de la tabla `actuacion`
+-- Volcado de datos para la tabla `login`
 --
-ALTER TABLE `actuacion`
-  MODIFY `idactuacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
---
--- AUTO_INCREMENT de la tabla `expediente`
---
-ALTER TABLE `expediente`
-  MODIFY `idexpediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT de la tabla `instrumento`
---
-ALTER TABLE `instrumento`
-  MODIFY `idinstrumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+INSERT INTO `login` (`id`, `usuario`, `pass`) VALUES
+(1, 'maty', 'maty'),
+(2, 'gerardo', 'gerardo');
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -175,7 +164,6 @@ ALTER TABLE `actuacion`
 --
 ALTER TABLE `instrumento`
   ADD CONSTRAINT `fk_instrumento` FOREIGN KEY (`idactuacion`) REFERENCES `actuacion` (`idactuacion`) ON DELETE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
