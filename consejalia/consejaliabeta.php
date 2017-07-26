@@ -72,15 +72,16 @@
 		        	echo "<td>".$fila[5] ."</td>";
 		        	echo "<td>".$fila[6] ."</td>";
 		        	echo "<td>".$auxarr[0] ."</td>";
-
+		        	echo "<td><a href=verexpediente.php?idexpediente=".$fila[0].">Ver</a>";
+		        	echo "&nbsp;&nbsp;&nbsp";
 		        	 if(isset($_SESSION['logged'])){
-		        	echo "<td><a href=editarcontacto.php?idexpediente=".$fila[0].">Editar</a>";
+		        	echo "<a href=editarcontacto.php?idexpediente=".$fila[0].">Editar</a>";
 
 
 		        	echo "&nbsp;&nbsp;&nbsp";
-		        	echo "<a href=borrarcontacto.php?idexpediente=".$fila[0].">Borrar</a></td>";
+		        	echo "<a href=borrarcontacto.php?idexpediente=".$fila[0].">Borrar</a>";
 		        	};
-		        	echo "</tr>";
+		        	echo "</td></tr>";
 	        	}
 	        ?>  
 	    </tbody>
