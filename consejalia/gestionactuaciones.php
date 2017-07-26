@@ -23,9 +23,12 @@
 			<input id="pase" onchange="mostrar()" type="checkbox" name="" checked="checked">
 			<label>Instrumento</label>
 			<input id="instrumento" onchange="mostrar()" type="checkbox" name="" checked="checked">
+			<?php
+				 if(isset($_SESSION['logged'])){
+			  ?>	
 			<a class="btn btn-primary float-right" href="carganuevo.php">Cargar Nuevo Expediente</a>
 			<a class="btn btn-primary float-right" href="cargaractuacion.php">Cargar Nueva Actuacion</a>
-
+				<?php }; ?>
 		</div>
 		<p></p>
 		<textarea hidden style="width:100%" id="exito"></textarea>
@@ -58,9 +61,13 @@
 		        	echo "<td>".$arrexpe[2] ."</td>";
 		        	echo "<td>".$fila[3] ."</td>";
 		        	echo "<td>".$fila[6] ."</td>";
+
+		        	 if(isset($_SESSION['logged'])){
 		        	echo "<td><a href=editaractuacion.php?idactuacion=".$fila[0]."&idexpediente=".$fila[1].">Editar</a>";
 		        	echo "&nbsp;&nbsp;&nbsp";
 		        	echo "<a href=borraractuacion.php?idactuacion=".$fila[0]."&idexpediente=".$fila[1].">Borrar</a></td>";
+		        		};
+
 		        	echo "</tr>";
 	        	}
 	        ?>  

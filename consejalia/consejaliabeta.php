@@ -29,10 +29,13 @@
 			<label>Resuelto</label>
 			<input id="resuelto" onchange="mostrar()" type="checkbox" name="" checked="checked">
 			<label>Archivado</label>
-			<input id="archivado" onchange="mostrar()" type="checkbox" name="" checked="checked">			
+			<input id="archivado" onchange="mostrar()" type="checkbox" name="" checked="checked">
+			<?php
+				 if(isset($_SESSION['logged'])){
+			  ?>			
 			<a class="btn btn-primary float-right" href="carganuevo.php">Cargar Nuevo Expediente</a>
 			<a class="btn btn-primary float-right" href="cargaractuacion.php">Cargar Nueva Actuacion</a>
-
+			<?php }; ?>
 		</div>
 		<p></p>
 		<textarea hidden style="width:100%" id="exito"></textarea>
@@ -69,9 +72,14 @@
 		        	echo "<td>".$fila[5] ."</td>";
 		        	echo "<td>".$fila[6] ."</td>";
 		        	echo "<td>".$auxarr[0] ."</td>";
+
+		        	 if(isset($_SESSION['logged'])){
 		        	echo "<td><a href=editarcontacto.php?idexpediente=".$fila[0].">Editar</a>";
+
+
 		        	echo "&nbsp;&nbsp;&nbsp";
 		        	echo "<a href=borrarcontacto.php?idexpediente=".$fila[0].">Borrar</a></td>";
+		        	};
 		        	echo "</tr>";
 	        	}
 	        ?>  
