@@ -1,28 +1,31 @@
-<?php include "conexion.php"; ?>
+﻿<?php include "conexion.php"; ?>
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
 	<title>Administrador</title>
 </head>
 <body>
-<?php include "menu.php"; ?>
-<div class="container">
-				<?php
+	<?php include "menu.php"; ?>
+	<div class="container">
+		
+		<?php
 			if(isset($_SESSION['logged'])){
 				header('Location:consejaliabeta.php');
 			}
 			else {
 		?>
+		
 		<div class="form-group" id= "body">
-		<form action="" method="POST">
-		<label>Usuario</label>
-		<input class="form-control" type="text" name="email" placeholder="email">
-		<label>Contrase�a</label>
-		<input class="form-control" type="password" name="password" placeholder="password">
-		<label></label>
-		<input class="btn btn-primary btn-block" type="submit" name="enviar" value="acceder">
-		<form/>
+			<form action="" method="POST">
+			<label>Usuario</label>
+			<input class="form-control" type="text" name="email" placeholder="Nombre de usuario">
+			<label>Contraseña</label>
+			<input class="form-control" type="password" name="password" placeholder="Contraseña">
+			<label></label>
+			<input class="btn btn-primary btn-block" type="submit" name="enviar" value="Acceder">
+			<form/>
 		</div>
+		
 		<?php
 			}
 			if(isset($_POST['enviar'])){
@@ -46,6 +49,6 @@
 				}
 			}
 		?>
-
+	</div>	
 </body>
 </html>
