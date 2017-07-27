@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-07-2017 a las 08:17:49
--- Versión del servidor: 10.1.24-MariaDB
--- Versión de PHP: 7.1.6
+-- Tiempo de generación: 27-07-2017 a las 22:06:04
+-- Versión del servidor: 10.1.25-MariaDB
+-- Versión de PHP: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -47,13 +47,8 @@ CREATE TABLE `actuacion` (
 --
 
 INSERT INTO `actuacion` (`idactuacion`, `idexpediente`, `numero`, `fin`, `fecha`, `resena`, `tipo`, `paseorigen`, `pasedestino`, `usuario`, `ultimamodif`) VALUES
-(3, 9, '1412/2017', 'Aprobar la construcción de 100 metros de cloacas para el barrio Lomas del Mirador.', NULL, NULL, 'Instrumento', NULL, NULL, NULL, NULL),
-(6, 5, '6774/2017', 'Un fin', NULL, NULL, 'Pase', NULL, NULL, NULL, NULL),
-(7, 2, '7455/2017', 'otro fin', NULL, NULL, 'Instrumento', NULL, NULL, NULL, NULL),
-(8, 13, '2348/2017', 'un fin', NULL, NULL, 'Pase', NULL, NULL, NULL, NULL),
-(10, 9, '3564/2017', 'otro finnnnn', NULL, 'una reseña de actuacion', 'Pase', NULL, NULL, NULL, NULL),
-(56, 9, '1239/2016', 'un fin 2', '2017-07-02', 'una reseña 2', 'Pase', 'un origen de pase 3', 'un destino de pase 3', NULL, NULL),
-(60, 2, '12345/2016', 'un fin de actuacion', '2017-07-12', 'una reseña de actuacion', 'Instrumento', 'Un origen de pase', 'Un destino de pase', NULL, '2017-07-26 02:08:13');
+(63, 9, '1234 1', 'un fin 11', '2017-01-01', 'una reseña 11', 'Pase', 'un origen 11', 'un destino 11', NULL, '2017-07-27 20:03:41'),
+(64, 9, '4321 11', 'un fin 11', '2017-01-01', 'una reseña 11', 'Instrumento', '', '', NULL, '2017-07-27 20:04:57');
 
 -- --------------------------------------------------------
 
@@ -83,7 +78,7 @@ INSERT INTO `expediente` (`idexpediente`, `titulo`, `numero`, `area`, `resena`, 
 (4, 'Otro expediente', '0043/2016', 'Otra area', 'otra reseña', 'Para firma', '2016-12-14', NULL, NULL),
 (5, 'Expediente nuevecito', '0010/2016', 'Area nuevecita', 'asjfaklñasdjfk alñkfjasñlkf a klñasdfjasdf klñasfjads klafjasdf', 'Archivado', '2016-05-19', NULL, NULL),
 (9, 'S/ Construcción de cloaclas', '0002/2017', 'Equipo de Proyecto', 'Ante la necesidad de salubridad y mejoría en la calidad de vida, este honorable consejo debe tratar este proyecto de contrucción de 10 mil metros de cloaca.', 'Ingresado', '2017-01-02', NULL, NULL),
-(13, 'Otro expediente nuevo', '0112/2017', 'Equipo de Proyecto', 'hola hola hola hola hola hola hola hola hola chau chau chau chau chau chau chau chau chau chau chau chau chau', 'Ingresado', '2017-03-01', NULL, NULL);
+(13, 'Otro expediente nuevo', '0112/2017', 'Equipo de Proyecto', 'hola hola hola hola hola hola hola hola hola chau chau chau chau chau chau chau chau chau chau chau chau chau hola', 'Ingresado', '2017-03-01', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -123,7 +118,7 @@ CREATE TABLE `instrumento` (
 --
 
 INSERT INTO `instrumento` (`idinstrumento`, `idactuacion`, `tipo`, `notaayn`, `notadni`, `notadireccion`, `notatelefono`, `resnumero`, `resndado`, `pdotipo`, `pdoconcejal`, `pdobarrio`, `pdotemas`, `pdotiposes`, `ordnumero`, `ordnumerores`, `ordndado`, `leynumero`, `declnumero`, `declndado`, `invitacionqi`, `oficionro`, `usuario`, `ultimamodif`) VALUES
-(23, 60, 'Otro', 'Budzovsky, Gerardo David', 36674113, 'Santiago Baibiene 2083', '3794572404', '12345', '12345', 'Ordenanza', 'Un concejal', 'Aldana', 'Tema1, Tema2, Tema3', 'Sesion Ordinaria', '13343', '12345', '12344', '27437', '123451', '123451', 'Macri Gato', '123546', NULL, '2017-07-26 02:08:13');
+(25, 64, 'Ley', '', 0, '', '', '', '', 'Ordenanza', '', '', '', 'Sesion Ordinaria', '', '', '', '27367', '', '', '', '', NULL, '2017-07-27 20:04:58');
 
 -- --------------------------------------------------------
 
@@ -183,7 +178,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT de la tabla `actuacion`
 --
 ALTER TABLE `actuacion`
-  MODIFY `idactuacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `idactuacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 --
 -- AUTO_INCREMENT de la tabla `expediente`
 --
@@ -193,7 +188,7 @@ ALTER TABLE `expediente`
 -- AUTO_INCREMENT de la tabla `instrumento`
 --
 ALTER TABLE `instrumento`
-  MODIFY `idinstrumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idinstrumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT de la tabla `login`
 --

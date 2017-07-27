@@ -10,7 +10,6 @@
 			fin= '".$_POST['fin']."',
 			fecha= '".$_POST['fecha']."',
 			resena= '".$_POST['resena']."',
-			tipo= '".$_POST['tipo']."',
 			paseorigen= '".$_POST['paseorigen']."',
 			pasedestino= '".$_POST['pasedestino']."'
 			WHERE idactuacion=".$_GET['idactuacion'].
@@ -22,7 +21,6 @@
 			
 			mysqli_query($conexion, "UPDATE instrumento
 			SET 
-			tipo= '".$_POST['tipoins']."',
 			notaayn= '".$_POST['notaayn']."',
 			notadni= '".$_POST['notadni']."',
 			notadireccion= '".$_POST['notadireccion']."',
