@@ -17,7 +17,7 @@
       	<?php
          if(isset($_SESSION['logged'])){
         ?>
-        <li><a href="cargarnuevo.php">Nuevo Expediente</a></li>  
+        <li><a href="carganuevo.php">Nuevo Expediente</a></li>  
         <li><a href="cargaractuacion.php">Nueva Actuacion</a></li>
         <?php }; ?>
       	<li><a href="generarpdf.php">Generar Informes</a></li>

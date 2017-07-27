@@ -1,7 +1,7 @@
 <?php 
 	include "conexion.php";
 
-		//guardamos el formulario
+	//guardamos el formulario
 	if (isset($_POST['enviar'])) {
 		
 		//consigue el id del expediente mediante el numero de expediente
@@ -27,6 +27,7 @@
 		setlocale(LC_ALL, "spanish");
 		$actuacion=mysqli_fetch_array($actuaciones);
 		
+		//Si la actuacion es de tipo instrumento, inserta un registro en la tabla instrumento
 		if ($_POST['tipo'] == 'Instrumento') {			
 			
 			mysqli_query($conexion, "INSERT INTO instrumento(idactuacion, tipo, notaayn, notadni, notadireccion, notatelefono, resnumero, resndado, pdotipo, pdoconcejal, pdobarrio, pdotemas, pdotiposes, ordnumero, ordnumerores, ordndado, leynumero, declnumero, declndado, invitacionqi, oficionro) VALUES(
@@ -59,69 +60,71 @@
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Carga de Actuacion</title>
-		<!-- Bootstrap -->
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<?php 
-			include "menu.php";
-			include "incluirjq.php";
-		?>
-		<div class="container">
-			<form action="" method="POST">
-				<div class="form-group">
-					<h1>Carga de Actuacion</h1>
-					<h2>Datos comunes a todas las actuaciones</h2>
-					<label>Numero de Expediente:</label>
-					<input class="form-control" id="nmexpediente" name="nmexpediente" list="expedientes">
-					<datalist id="expedientes">
-						<?php 
-							$expedientes = mysqli_query($conexion, "SELECT * FROM expediente ORDER BY numero LIMIT 9999");
-							setlocale(LC_ALL, "spanish");
-							while($expediente=mysqli_fetch_array($expedientes)){
-								echo "<option value='" . $expediente['numero'] . "'>";
-							};
-						?>
-					</datalist>				
-					<label for="numero">Numero de Actuacion Simple:</label>
-					<input class="form-control" id="numero" type="text" name="numero" placeholder="">
-					<label>Fin/Destino/Enviado a:</label>
-					<input class="form-control" id="fin" type="text" name="fin">
-					<label for="fecha">Fecha de Presentacion:</label>
-					<input class="form-control" id="fecha" type="date" name="fecha">
-					<label for="resena">Reseña:</label>
-					<textarea class="form-control" id="resena" name="resena"></textarea>
-					<label for="tipo">Tipo de Actuacion:</label>
-					<select class="form-control" autocomplete="off" id="tipo" name="tipo" onchange="actuacion()">
-						<option selected value="Pase">Pase</option>
-						<option value="Instrumento">Instrumento</option>					
-					</select>
-					<!-- pases -->
-						<div id="pases">
-							<h2>Datos para pases</h2>
-							<label for="paseorigen">Origen:</label>
-							<input class= "form-control" list="areas" id="paseorigen" name="paseorigen">
-							<datalist id="areas">
-								<option value="Equipo de Proyecto">
-								<option value="Secretaria">
-								<option value="Equipo territorial del bloque">
-								<option value="Equipo CCPA">
-								<option value="Area de Personal">
-							</datalist>
-							<label for="pasedestino">Destino:</label>
-							<input class= "form-control" list="areas" id="pasedestino" name="pasedestino">
-							<datalist id="areas">
-								<option value="Equipo de Proyecto">
-								<option value="Secretaria">
-								<option value="Equipo territorial del bloque">
-								<option value="Equipo CCPA">
-								<option value="Area de Personal">
-							</datalist>
-						</div>
-					<!-- instrumentos -->
-						<div id="instrumentos" style="display: none;">
+<head>
+	<title>Carga de Actuacion</title>
+	<!-- Bootstrap -->
+	<meta charset="utf-8">
+</head>
+<body>
+	<?php 
+		include "menu.php";
+		include "incluirjq.php";
+	?>
+	<div class="container">
+		<form action="" method="POST">
+			<div class="form-group">
+				<h1>Carga de Actuacion</h1>
+				<h2>Datos comunes a todas las actuaciones</h2>
+				<label>Numero de Expediente:</label>
+				<input class="form-control" id="nmexpediente" name="nmexpediente" list="expedientes">
+				<datalist id="expedientes">
+					<?php 
+						$expedientes = mysqli_query($conexion, "SELECT * FROM expediente ORDER BY numero LIMIT 9999");
+						setlocale(LC_ALL, "spanish");
+						while($expediente=mysqli_fetch_array($expedientes)){
+							echo "<option value='" . $expediente['numero'] . "'>";
+						};
+					?>
+				</datalist>				
+				<label for="numero">Numero de Actuacion Simple:</label>
+				<input class="form-control" type="text" id="numero" name="numero" placeholder="">
+				<label>Fin/Destino/Enviado a:</label>
+				<input class="form-control" type="text" id="fin"  name="fin">
+				<label for="fecha">Fecha de Presentacion:</label>
+				<input class="form-control" type="date" id="fecha"  name="fecha">
+				<label for="resena">Reseña:</label>
+				<textarea class="form-control" id="resena" name="resena"></textarea>
+				<label for="tipo">Tipo de Actuacion:</label>
+				<select class="form-control" autocomplete="off" id="tipo" name="tipo" onchange="actuacion()">
+					<option selected value="Pase">Pase</option>
+					<option value="Instrumento">Instrumento</option>					
+				</select>
+				
+				<!-- pases -->
+				
+				<div id="pases">
+					<h2>Datos para pases</h2>
+					<label for="paseorigen">Origen:</label>
+					<input class= "form-control" list="areas" id="paseorigen" name="paseorigen">
+					<datalist id="areas">
+						<option value="Equipo de Proyecto">
+						<option value="Secretaria">
+						<option value="Equipo territorial del bloque">
+						<option value="Equipo CCPA">
+						<option value="Area de Personal">
+					</datalist>
+					<label for="pasedestino">Destino:</label>
+					<input class= "form-control" list="areas" id="pasedestino" name="pasedestino">
+					<datalist id="areas">
+						<option value="Equipo de Proyecto">
+						<option value="Secretaria">
+						<option value="Equipo territorial del bloque">
+						<option value="Equipo CCPA">
+						<option value="Area de Personal">
+					</datalist>
+				</div>
+				<!-- instrumentos -->
+				<div id="instrumentos" style="display: none;">
 							<h2>Datos para Instrumentos</h2>
 							<label for="tipoins">Tipo de instrumento:</label>
 							<select class="form-control" id="tipoins" name="tipoins" autocomplete="off" onchange="instrumento()">
@@ -136,19 +139,22 @@
 								<option value="Declaracion">Declaracion</option>
 								<option value="Invitacion">Invitacion</option>
 								<option value="Oficio">Oficio</option>
+								<option value="Otro">Otro</option>
 							</select>
+							
 							<!-- notas -->
-								<div id="notas">
-									<h3>Datos para Nota</h3>
-									<label for="notaayn">Apellido y Nombre:</label>
-									<input class="form-control" type="text" id="notaayn" name="notaayn">
-									<label for="notadni">DNI (sin puntos):</label>
-									<input class="form-control" type="number" id="notadni" name="notadni" min="0" max="999999999">
-									<label for="notadireccion">Direccion:</label>
-									<input class="form-control" type="text" id="notadireccion" name="notadireccion">
-									<label for="notatelefono">Numero de telefono:</label>
-									<input class="form-control" type="text" id="notatelefono" name="notatelefono">
-								</div>					
+							
+							<div id="notas">
+								<h3>Datos para Nota</h3>
+								<label for="notaayn">Apellido y Nombre:</label>
+								<input class="form-control" type="text" id="notaayn" name="notaayn">
+								<label for="notadni">DNI (sin puntos):</label>
+								<input class="form-control" type="number" id="notadni" name="notadni" min="0" max="999999999">
+								<label for="notadireccion">Direccion:</label>
+								<input class="form-control" type="text" id="notadireccion" name="notadireccion">
+								<label for="notatelefono">Numero de telefono:</label>
+								<input class="form-control" type="text" id="notatelefono" name="notatelefono">
+							</div>					
 							<!-- memorandums -->
 								<div id="memorandums" style="display: none;">
 									<h3>Datos para Memorandum</h3>
@@ -227,23 +233,22 @@
 									</datalist>
 								</div>
 							<!-- oficios -->
-								<div id="oficios" style="display: none;">
-									<h3>Datos para Oficio</h3>
-									<label for="oficionro">Numero de Oficio:</label>
-									<input class="form-control" type="text" id="oficionro" name="oficionro">
-								</div>					
-						</div>
+							<div id="oficios" style="display: none;">
+							<h3>Datos para Oficio</h3>
+							<label for="oficionro">Numero de Oficio:</label>
+							<input class="form-control" type="text" id="oficionro" name="oficionro">
+							</div>					
+				</div>
 					<br>
 					<input class="btn btn-default" type="submit" name="enviar" value="Cargar Actuacion">
-				</div>	
-			</form>
-		</div>
+			</div>	
+		</form>
+	</div>
 	</body>
 	<script>
 		function instrumento() {
-				  // Declare variables
-				  var input;
-				  input = document.getElementById("tipoins").value;
+			var input;
+			input = document.getElementById("tipoins").value;
 				  	switch(input) {
 					    case "Nota":
 					    	aux = document.getElementById("notas");
@@ -509,7 +514,7 @@
 					    	aux = document.getElementById("oficios");
 					    	aux.style.display = "";
 					    break;
-					    case "otro":
+					    case "Otro":
 					    aux = document.getElementById("notas");
 					    	aux.style.display = "none";
 					    	aux = document.getElementById("memorandums");
@@ -534,26 +539,24 @@
 					    	aux.style.display = "none";
 					} 
 		}
+		
 		function actuacion() {
-				  // Declare variables
-				  var input;
-				  input = document.getElementById("tipo").value;
-				  	switch(input) {
-					    case "Pase":
-					    	aux = document.getElementById("pases");
-					    	aux.style.display = "";
-					    	aux = document.getElementById("instrumentos");
-					    	aux.style.display = "none";
-					    break;
-					    case "Instrumento":
-					    	aux = document.getElementById("pases");
-					    	aux.style.display = "none";
-					    	aux = document.getElementById("instrumentos");
-					    	aux.style.display = "";
-					    break;
-					    
-					} 
+			var input;
+			input = document.getElementById("tipo").value;
+			switch(input) {
+			    case "Pase":
+			    	aux = document.getElementById("pases");
+			    	aux.style.display = "";
+			    	aux = document.getElementById("instrumentos");
+			    	aux.style.display = "none";
+			    break;
+			    case "Instrumento":
+			    	aux = document.getElementById("pases");
+			    	aux.style.display = "none";
+			    	aux = document.getElementById("instrumentos");
+			    	aux.style.display = "";
+				break;
+			} 
 		}
 	</script>
-
 </html>

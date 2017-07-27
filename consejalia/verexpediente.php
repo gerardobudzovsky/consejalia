@@ -68,15 +68,14 @@
 					</select>
 					<label>Fecha de Inicio:</label>
 					<p style="color:green;"><b><?php echo $exp['fecha']; ?></b></p>
-					<label>Actuaciones:</label>
+					<label><h2>Actuaciones:</h2></label>
 					<br>
 					<?php
 						$actuaciones=mysqli_query($conexion, "SELECT * FROM actuacion WHERE idexpediente=".$_GET['idexpediente']."");
 						setlocale(LC_ALL, "spanish");
 						while ($actuacion=mysqli_fetch_array($actuaciones)) {
-							echo "<h4 class='panel panel-default'><a href='veractuacion.php?idactuacion=" .$actuacion['idactuacion'] . "&idexpediente=" .$actuacion['idexpediente'] . "'>" .$actuacion['numero'] . " " 
-							. $actuacion['fin']."</a></h4>";
-						;}
+							echo "<h4 class='panel panel-default'><a href='veractuacion.php?idactuacion=" .$actuacion['idactuacion'] . "&idexpediente=" .$actuacion['idexpediente'] . "'>" .$actuacion['numero'] . " " . $actuacion['fin']."</a></h4>";
+						}
 					 ?>
 				</div>	
 			</form>
