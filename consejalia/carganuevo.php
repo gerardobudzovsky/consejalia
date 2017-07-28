@@ -1,18 +1,5 @@
 <?php 
-	include "conexion.php" ;
-	
-	if (isset($_POST['enviar'])) {
-
-		mysqli_query($conexion, "INSERT INTO expediente(titulo, numero, area, resena, estado, fecha) VALUES(
-			'".$_POST['titulo']."',
-			'".$_POST['numero']."',
-			'".$_POST['area']."',
-			'".$_POST['resena']."',
-			'".$_POST['estado']."',
-			'".$_POST['fecha']."'
-			)"
-		);
-	}
+	include "conexion.php" ;	
 ?>
 
 <!DOCTYPE html>
@@ -83,3 +70,24 @@
 </script>
 
 </html>
+
+<?php
+	if (isset($_POST['enviar'])) {
+
+		mysqli_query($conexion, "INSERT INTO expediente(titulo, numero, area, resena, estado, fecha, usuario) VALUES(
+			'".$_POST['titulo']."',
+			'".$_POST['numero']."',
+			'".$_POST['area']."',
+			'".$_POST['resena']."',
+			'".$_POST['estado']."',
+			'".$_POST['fecha']."',
+			'".$_SESSION['usuario']." Creo'
+			)"
+		);
+	}
+ ?>
+
+ 
+<?php if (!isset($_SESSION['logged'])){
+	header('Location: consejaliabeta.php');
+}

@@ -35,3 +35,8 @@
 		</div>
 	</body>
 </html>
+
+
+<?php if (!isset($_SESSION['logged'])){
+	header('Location: consejaliabeta.php');
+}

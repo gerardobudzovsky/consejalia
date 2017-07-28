@@ -100,7 +100,7 @@
 		 	}
 
 		 	for (i = 1; i < tr.length; i++) {
-				td = tr[i].getElementsByTagName("td")[5].innerHTML;
+				td = tr[i].getElementsByTagName("td")[4].innerHTML;
 				if (document.getElementById('ingresado').checked && (td.toUpperCase() == "INGRESADO")) {
 			      tr[i].removeAttribute("hidden");
 				} 

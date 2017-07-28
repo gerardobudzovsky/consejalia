@@ -1,22 +1,7 @@
 <?php 
 	include "conexion.php";	
 
-	if (isset($_POST['enviar'])) {
-		
-		mysqli_query($conexion, "UPDATE expediente 
-			SET 
-			titulo='".$_POST['titulo']."',
-			numero='".$_POST['numero']."',
-			area='".$_POST['area']."',
-			resena='".$_POST['resena']."',
-			estado='".$_POST['estado']."',
-			fecha='".$_POST['fecha']."'
-			WHERE idexpediente=".$_GET['idexpediente'].""
-		);
-		
-		header("Location: consejaliabeta.php");
-		
-	}
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -75,3 +60,27 @@
 		</div>
 	</body>
 </html>
+
+<?php 
+	if (isset($_POST['enviar'])) {
+		
+		mysqli_query($conexion, "UPDATE expediente 
+			SET 
+			titulo='".$_POST['titulo']."',
+			numero='".$_POST['numero']."',
+			area='".$_POST['area']."',
+			resena='".$_POST['resena']."',
+			estado='".$_POST['estado']."',
+			fecha='".$_POST['fecha']."',
+			usuario='".$_SESSION['usuario']." Edito'
+			WHERE idexpediente=".$_GET['idexpediente'].""
+		);
+		
+		header("Location: consejaliabeta.php");
+		
+	} ?>
+
+	
+<?php if (!isset($_SESSION['logged'])){
+	header('Location: consejaliabeta.php');
+}

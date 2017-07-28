@@ -1,65 +1,7 @@
 <?php 
 	include "conexion.php";
 	
-	if (isset($_POST['enviar'])) {
-
-		//consigue el id del expediente mediante el numero de expediente y arregla para el expediente nulo
-		$expedientes = mysqli_query($conexion, "SELECT * FROM expediente WHERE numero='". $_POST['idexpediente'] ."' ORDER BY numero LIMIT 1");
-		$expediente=mysqli_fetch_array($expedientes);
-			
-			
-			if(!is_numeric($expediente['idexpediente'])){
-				$idexpe="NULL";
-			}else {
-				$idexpe = "'". $expediente['idexpediente'] . "'";
-			}
-
-
-		mysqli_query($conexion, "UPDATE actuacion
-			SET
-			idexpediente= ".$idexpe.",
-			numero= '".$_POST['numero']."',
-			fin= '".$_POST['fin']."',
-			fecha= '".$_POST['fecha']."',
-			resena= '".$_POST['resena']."',
-			paseorigen= '".$_POST['paseorigen']."',
-			pasedestino= '".$_POST['pasedestino']."'
-			WHERE idactuacion=".$_GET['idactuacion']
-		);
-		
-		
-		if ($_POST['tipo'] == 'Instrumento') {			
-			
-			mysqli_query($conexion, "UPDATE instrumento
-			SET 
-			notaayn= '".$_POST['notaayn']."',
-			notadni= '".$_POST['notadni']."',
-			notadireccion= '".$_POST['notadireccion']."',
-			notatelefono= '".$_POST['notatelefono']."',
-			resnumero= '".$_POST['resnumero']."',
-			resndado= '".$_POST['resndado']."',
-			pdotipo= '".$_POST['pdotipo']."',
-			pdoconcejal= '".$_POST['pdoconcejal']."',
-			pdobarrio= '".$_POST['pdobarrio']."',
-			pdotemas= '".$_POST['pdotemas']."',
-			pdotiposes= '".$_POST['pdotiposes']."',
-			ordnumero= '".$_POST['ordnumero']."',
-			ordnumerores= '".$_POST['ordnumerores']."',
-			ordndado= '".$_POST['ordndado']."',
-			leynumero= '".$_POST['leynumero']."',
-			declnumero= '".$_POST['declnumero']."',
-			declndado= '".$_POST['declndado']."',
-			invitacionqi= '".$_POST['invitacionqi']."',
-			oficionro= '".$_POST['oficionro']."'
-			
-			WHERE idactuacion=".$_GET['idactuacion']."" 
-			);
-			
-		}
-		
-		header("Location: gestionactuaciones.php");
-		
-	}
+	
 ?>
 
 <!DOCTYPE html>
@@ -128,11 +70,14 @@
 					<label for="resena">Reseña:</label>
 					<textarea class="form-control" id="resena" name="resena"><?php echo $act['resena']; ?></textarea>					
 					<label for="tipo">Tipo de Actuacion:</label>
+					<input type="text" class="form-control" disabled value="<?php echo $act['tipo'] ?>">
+					<input type="hidden" id="tipo" name="tipo" value="<?php echo $act['tipo'] ?>">
+					<!-- 
 					<select class="form-control" id="tipo" name="tipo" disabled="disabled">
 						<option value="Pase" <?php if ($act['tipo']=="Pase"){ echo "selected='selected'"; }; ?>>Pase</option>
 						<option value="Instrumento" <?php if ($act['tipo']=="Instrumento"){ echo "selected='selected'"; }; ?>>Instrumento</option>			
 					</select>	
-
+					-->
 					<!-- pases -->
 					<div id="pases">
 					<h2>Datos para pases</h2>
@@ -609,3 +554,72 @@
 		}
 	</script>	
 </html>
+
+<?php
+	if (isset($_POST['enviar'])) {
+
+		//consigue el id del expediente mediante el numero de expediente y arregla para el expediente nulo
+		$expedientes = mysqli_query($conexion, "SELECT * FROM expediente WHERE numero='". $_POST['idexpediente'] ."' ORDER BY numero LIMIT 1");
+		$expediente=mysqli_fetch_array($expedientes);
+			
+			
+			if(!is_numeric($expediente['idexpediente'])){
+				$idexpe="NULL";
+			}else {
+				$idexpe = "'". $expediente['idexpediente'] . "'";
+			}
+
+
+		mysqli_query($conexion, "UPDATE actuacion
+			SET
+			idexpediente= ".$idexpe.",
+			numero= '".$_POST['numero']."',
+			fin= '".$_POST['fin']."',
+			fecha= '".$_POST['fecha']."',
+			resena= '".$_POST['resena']."',
+			paseorigen= '".$_POST['paseorigen']."',
+			pasedestino= '".$_POST['pasedestino']."',
+			usuario='".$_SESSION['usuario']." Edito'
+
+			WHERE idactuacion=".$_GET['idactuacion']
+		);
+		
+		
+		if ($_POST['tipo'] == 'Instrumento') {			
+			
+			mysqli_query($conexion, "UPDATE instrumento
+			SET 
+			notaayn= '".$_POST['notaayn']."',
+			notadni= '".$_POST['notadni']."',
+			notadireccion= '".$_POST['notadireccion']."',
+			notatelefono= '".$_POST['notatelefono']."',
+			resnumero= '".$_POST['resnumero']."',
+			resndado= '".$_POST['resndado']."',
+			pdotipo= '".$_POST['pdotipo']."',
+			pdoconcejal= '".$_POST['pdoconcejal']."',
+			pdobarrio= '".$_POST['pdobarrio']."',
+			pdotemas= '".$_POST['pdotemas']."',
+			pdotiposes= '".$_POST['pdotiposes']."',
+			ordnumero= '".$_POST['ordnumero']."',
+			ordnumerores= '".$_POST['ordnumerores']."',
+			ordndado= '".$_POST['ordndado']."',
+			leynumero= '".$_POST['leynumero']."',
+			declnumero= '".$_POST['declnumero']."',
+			declndado= '".$_POST['declndado']."',
+			invitacionqi= '".$_POST['invitacionqi']."',
+			oficionro= '".$_POST['oficionro']."'
+			
+			WHERE idactuacion=".$_GET['idactuacion']."" 
+			);
+			
+		}
+		
+		//header("Location: gestionactuaciones.php");
+		
+	}
+ ?>
+
+ 
+<?php if (!isset($_SESSION['logged'])){
+	header('Location: consejaliabeta.php');
+}

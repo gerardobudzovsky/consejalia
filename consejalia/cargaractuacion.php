@@ -1,68 +1,5 @@
 <?php 
 	include "conexion.php";
-
-	//guardamos el formulario
-	if (isset($_POST['enviar'])) {
-		
-		
-		//consigue el id del expediente mediante el numero de expediente y arregla para el expediente nulo
-		$expedientes = mysqli_query($conexion, "SELECT * FROM expediente WHERE numero='". $_POST['nmexpediente'] ."' ORDER BY numero LIMIT 1");
-		$expediente=mysqli_fetch_array($expedientes);
-			
-			if(!is_numeric($expediente['idexpediente'])){
-				$idexpe="NULL";
-			}else {
-				$idexpe = "'". $expediente['idexpediente'] . "'";
-			}
-
-
-		//guardamos el formulario
-		mysqli_query($conexion, "INSERT INTO actuacion(idexpediente, numero, fin, fecha, resena, tipo, paseorigen, pasedestino) VALUES(
-			".$idexpe.",
-			'".$_POST['numero']."',
-			'".$_POST['fin']."',
-			'".$_POST['fecha']."',
-			'".$_POST['resena']."',
-			'".$_POST['tipo']."',
-			'".$_POST['paseorigen']."',
-			'".$_POST['pasedestino']."'
-			)"
-		);
-		
-		//Consigue el id de la actuacion mediante el numero de actuacion simple
-		$actuaciones = mysqli_query($conexion, "SELECT * FROM actuacion WHERE numero='". $_POST['numero'] ."' ORDER BY numero LIMIT 1");
-		setlocale(LC_ALL, "spanish");
-		$actuacion=mysqli_fetch_array($actuaciones);
-		
-		//Si la actuacion es de tipo instrumento, inserta un registro en la tabla instrumento
-		if ($_POST['tipo'] == 'Instrumento') {			
-			
-			mysqli_query($conexion, "INSERT INTO instrumento(idactuacion, tipo, notaayn, notadni, notadireccion, notatelefono, resnumero, resndado, pdotipo, pdoconcejal, pdobarrio, pdotemas, pdotiposes, ordnumero, ordnumerores, ordndado, leynumero, declnumero, declndado, invitacionqi, oficionro) VALUES(
-			'".$actuacion['idactuacion']."',
-			'".$_POST['tipoins']."',
-			'".$_POST['notaayn']."',
-			'".$_POST['notadni']."',
-			'".$_POST['notadireccion']."',
-			'".$_POST['notatelefono']."',
-			'".$_POST['resnumero']."',
-			'".$_POST['resndado']."',
-			'".$_POST['pdotipo']."',
-			'".$_POST['pdoconcejal']."',
-			'".$_POST['pdobarrio']."',
-			'".$_POST['pdotemas']."',
-			'".$_POST['pdotiposes']."',
-			'".$_POST['ordnumero']."',
-			'".$_POST['ordnumerores']."',
-			'".$_POST['ordndado']."',
-			'".$_POST['leynumero']."',
-			'".$_POST['declnumero']."',
-			'".$_POST['declndado']."',
-			'".$_POST['invitacionqi']."',
-			'".$_POST['oficionro']."'
-			)"
-			);
-		}		
-	}
 ?>
 
 <!DOCTYPE html>
@@ -567,3 +504,97 @@
 		}
 	</script>
 </html>
+
+<?php
+	//guardamos el formulario
+	if (isset($_POST['enviar'])) {
+		
+		
+		//consigue el id del expediente mediante el numero de expediente y arregla para el expediente nulo
+		$expedientes = mysqli_query($conexion, "SELECT * FROM expediente WHERE numero='". $_POST['nmexpediente'] ."' ORDER BY numero LIMIT 1");
+		$expediente=mysqli_fetch_array($expedientes);
+			
+			if(!is_numeric($expediente['idexpediente'])){
+				$idexpe="NULL";
+			}else {
+				$idexpe = "'". $expediente['idexpediente'] . "'";
+			}
+
+
+		//guardamos el formulario
+		mysqli_query($conexion, "INSERT INTO actuacion(idexpediente, numero, fin, fecha, resena, tipo, paseorigen, pasedestino, usuario) VALUES(
+			".$idexpe.",
+			'".$_POST['numero']."',
+			'".$_POST['fin']."',
+			'".$_POST['fecha']."',
+			'".$_POST['resena']."',
+			'".$_POST['tipo']."',
+			'".$_POST['paseorigen']."',
+			'".$_POST['pasedestino']."',
+			'".$_SESSION['usuario']." Creo'
+			)"
+		);
+		
+		//Consigue el id de la actuacion mediante el numero de actuacion simple
+		$actuaciones = mysqli_query($conexion, "SELECT * FROM actuacion WHERE numero='". $_POST['numero'] ."' ORDER BY numero LIMIT 1");
+		setlocale(LC_ALL, "spanish");
+		$actuacion=mysqli_fetch_array($actuaciones);
+		
+		//Si la actuacion es de tipo instrumento, inserta un registro en la tabla instrumento
+		if ($_POST['tipo'] == 'Instrumento') {			
+			
+			echo "INSERT INTO instrumento(idactuacion, tipo, notaayn, notadni, notadireccion, notatelefono, resnumero, resndado, pdotipo, pdoconcejal, pdobarrio, pdotemas, pdotiposes, ordnumero, ordnumerores, ordndado, leynumero, declnumero, declndado, invitacionqi, oficionro) VALUES(
+			'".$actuacion['idactuacion']."',
+			'".$_POST['tipoins']."',
+			'".$_POST['notaayn']."',
+			'".$_POST['notadni']."',
+			'".$_POST['notadireccion']."',
+			'".$_POST['notatelefono']."',
+			'".$_POST['resnumero']."',
+			'".$_POST['resndado']."',
+			'".$_POST['pdotipo']."',
+			'".$_POST['pdoconcejal']."',
+			'".$_POST['pdobarrio']."',
+			'".$_POST['pdotemas']."',
+			'".$_POST['pdotiposes']."',
+			'".$_POST['ordnumero']."',
+			'".$_POST['ordnumerores']."',
+			'".$_POST['ordndado']."',
+			'".$_POST['leynumero']."',
+			'".$_POST['declnumero']."',
+			'".$_POST['declndado']."',
+			'".$_POST['invitacionqi']."',
+			'".$_POST['oficionro']."'
+			)";
+			mysqli_query($conexion, "INSERT INTO instrumento(idactuacion, tipo, notaayn, notadni, notadireccion, notatelefono, resnumero, resndado, pdotipo, pdoconcejal, pdobarrio, pdotemas, pdotiposes, ordnumero, ordnumerores, ordndado, leynumero, declnumero, declndado, invitacionqi, oficionro) VALUES(
+			'".$actuacion['idactuacion']."',
+			'".$_POST['tipoins']."',
+			'".$_POST['notaayn']."',
+			'".$_POST['notadni']."',
+			'".$_POST['notadireccion']."',
+			'".$_POST['notatelefono']."',
+			'".$_POST['resnumero']."',
+			'".$_POST['resndado']."',
+			'".$_POST['pdotipo']."',
+			'".$_POST['pdoconcejal']."',
+			'".$_POST['pdobarrio']."',
+			'".$_POST['pdotemas']."',
+			'".$_POST['pdotiposes']."',
+			'".$_POST['ordnumero']."',
+			'".$_POST['ordnumerores']."',
+			'".$_POST['ordndado']."',
+			'".$_POST['leynumero']."',
+			'".$_POST['declnumero']."',
+			'".$_POST['declndado']."',
+			'".$_POST['invitacionqi']."',
+			'".$_POST['oficionro']."'
+			)"
+			);
+		}		
+	}
+ ?>
+
+ 
+<?php if (!isset($_SESSION['logged'])){
+	header('Location: consejaliabeta.php');
+}
