@@ -9,11 +9,12 @@
 		$expedientes = mysqli_query($conexion, "SELECT * FROM expediente WHERE numero='". $_POST['nmexpediente'] ."' ORDER BY numero LIMIT 1");
 		$expediente=mysqli_fetch_array($expedientes);
 			
-			$idexpe = "'". $expediente['idexpediente'] . "'";
-
-			if(!is_int($idexpe)){
+			if(!is_numeric($expediente['idexpediente'])){
 				$idexpe="NULL";
+			}else {
+				$idexpe = "'". $expediente['idexpediente'] . "'";
 			}
+
 
 		//guardamos el formulario
 		mysqli_query($conexion, "INSERT INTO actuacion(idexpediente, numero, fin, fecha, resena, tipo, paseorigen, pasedestino) VALUES(

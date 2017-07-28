@@ -73,8 +73,13 @@
 					<?php
 						$actuaciones=mysqli_query($conexion, "SELECT * FROM actuacion WHERE idexpediente=".$_GET['idexpediente']."");
 						setlocale(LC_ALL, "spanish");
+						$tienePrimerReg = false;
 						while ($actuacion=mysqli_fetch_array($actuaciones)) {
+							$tienePrimerReg = true;
 							echo "<h4 class='panel panel-default'><a href='veractuacion.php?idactuacion=" .$actuacion['idactuacion'] . "&idexpediente=" .$actuacion['idexpediente'] . "'>" .$actuacion['numero'] . " " . $actuacion['fin']."</a></h4>";
+						}
+						if (!$tienePrimerReg){
+							echo "<h4 style='color:green;'><b>No tiene actuaciones</b></h4>";
 						}
 					 ?>
 				</div>	

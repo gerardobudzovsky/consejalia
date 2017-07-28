@@ -27,7 +27,7 @@
 			<h2>¿Esta seguro que desea borrar esta actuacion?</h2>
 			<?php
 		        	
-		        echo "<h3> Numero de Actuacion: ".$actuacion[2] ."</h2>";	
+		        echo "<h3> Numero de Actuacion Simple: ".$actuacion[2] ."</h2>";	
 				echo "<h4>Fin: ". $actuacion[3] . "</h4>";
 			?>
 			<form action="" method="POST">
