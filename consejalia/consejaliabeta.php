@@ -44,7 +44,6 @@
 	  <table class="table table-inverse" id="mytable">
 	    <thead>
 	      <tr class="azul">
-	        <th>Id</th>
 	        <th>Titulo</th>
 	        <th>Numero</th>
 	        <th>Origen</th>
@@ -64,7 +63,6 @@
 		        	$auxarr= mysqli_fetch_array($auxquery);
 
 		        	echo "<tr>";
-		        	echo "<td>".$fila[0] ."</td>";
 		        	echo "<td>".$fila[1] ."</td>";
 		        	echo "<td>".$fila[2] ."</td>";
 		        	echo "<td>".$fila[3] ."</td>";
