@@ -9,12 +9,12 @@
 			include "incluirjq.php";
 			
 			$actuaciones=mysqli_query($conexion, "SELECT * FROM actuacion 
-				WHERE idactuacion=".$_GET['idactuacion']." AND idexpediente=".$_GET['idexpediente']." LIMIT 1");
+				WHERE idactuacion=".$_GET['idactuacion']." LIMIT 1");
 				$actuacion=mysqli_fetch_array($actuaciones);
 				setlocale(LC_ALL, "spanish");
 
 				if (isset($_POST['enviar'])) {				
-					mysqli_query($conexion, "DELETE FROM actuacion WHERE idactuacion=".$_GET['idactuacion']." AND idexpediente=".$_GET['idexpediente']."");
+					mysqli_query($conexion, "DELETE FROM actuacion WHERE idactuacion=".$_GET['idactuacion']."");
 				header("Location:gestionactuaciones.php");
 			}
 		?>
@@ -26,10 +26,8 @@
 		<div class="container">
 			<h2>¿Esta seguro que desea borrar esta actuacion?</h2>
 			<?php
-				$filaexpe= mysqli_query($conexion, "SELECT * FROM expediente WHERE idexpediente=".$actuacion[1]."");
-		        $arrexpe= mysqli_fetch_array($filaexpe);
 		        	
-		        echo "<h3> Titulo de expediente: ".$arrexpe[1] ."</h2>";	
+		        echo "<h3> Numero de Actuacion: ".$actuacion[2] ."</h2>";	
 				echo "<h4>Fin: ". $actuacion[3] . "</h4>";
 			?>
 			<form action="" method="POST">

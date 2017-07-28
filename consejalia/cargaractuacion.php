@@ -4,14 +4,20 @@
 	//guardamos el formulario
 	if (isset($_POST['enviar'])) {
 		
-		//consigue el id del expediente mediante el numero de expediente
-		$expedientes = mysqli_query($conexion, "SELECT * FROM expediente WHERE numero='". $_POST['nmexpediente'] ."' ORDER BY numero LIMIT 1");
-		setlocale(LC_ALL, "spanish");
-		$expediente=mysqli_fetch_array($expedientes);
-		//guardamos el formulario
 		
+		//consigue el id del expediente mediante el numero de expediente y arregla para el expediente nulo
+		$expedientes = mysqli_query($conexion, "SELECT * FROM expediente WHERE numero='". $_POST['nmexpediente'] ."' ORDER BY numero LIMIT 1");
+		$expediente=mysqli_fetch_array($expedientes);
+			
+			$idexpe = "'". $expediente['idexpediente'] . "'";
+
+			if(!is_int($idexpe)){
+				$idexpe="NULL";
+			}
+
+		//guardamos el formulario
 		mysqli_query($conexion, "INSERT INTO actuacion(idexpediente, numero, fin, fecha, resena, tipo, paseorigen, pasedestino) VALUES(
-			'".$expediente['idexpediente']."',
+			".$idexpe.",
 			'".$_POST['numero']."',
 			'".$_POST['fin']."',
 			'".$_POST['fecha']."',

@@ -2,18 +2,29 @@
 	include "conexion.php";
 	
 	if (isset($_POST['enviar'])) {
-		
+
+		//consigue el id del expediente mediante el numero de expediente y arregla para el expediente nulo
+		$expedientes = mysqli_query($conexion, "SELECT * FROM expediente WHERE numero='". $_POST['idexpediente'] ."' ORDER BY numero LIMIT 1");
+		$expediente=mysqli_fetch_array($expedientes);
+			
+			
+			if(!is_numeric($expediente['idexpediente'])){
+				$idexpe="NULL";
+			}else {
+				$idexpe = "'". $expediente['idexpediente'] . "'";
+			}
+
+
 		mysqli_query($conexion, "UPDATE actuacion
 			SET
-			idexpediente= '".$_POST['idexpediente']."',
+			idexpediente= ".$idexpe.",
 			numero= '".$_POST['numero']."',
 			fin= '".$_POST['fin']."',
 			fecha= '".$_POST['fecha']."',
 			resena= '".$_POST['resena']."',
 			paseorigen= '".$_POST['paseorigen']."',
 			pasedestino= '".$_POST['pasedestino']."'
-			WHERE idactuacion=".$_GET['idactuacion'].
-				  " AND idexpediente=".$_GET['idexpediente'].""
+			WHERE idactuacion=".$_GET['idactuacion']
 		);
 		
 		
@@ -46,7 +57,7 @@
 			
 		}
 		
-		header("Location: gestionactuaciones.php");
+		//header("Location: gestionactuaciones.php");
 		
 	}
 ?>
@@ -66,7 +77,7 @@
 		<?php 
 			$actuaciones=mysqli_query($conexion, "SELECT * FROM actuacion 
 				WHERE idactuacion=".$_GET['idactuacion'].
-				" AND idexpediente=".$_GET['idexpediente']." LIMIT 1");
+				" LIMIT 1");
 			$actuacion=mysqli_fetch_array($actuaciones);
 			setlocale(LC_ALL, "spanish");
 			$act= $actuacion;
@@ -86,20 +97,27 @@
 					<h1>Editar Actuacion</h1>
 					
 					<label>Numero de expediente:</label>
-					<select class="form-control" id="idexpediente" name="idexpediente" >
+					<?php
+
+					$expedientes = mysqli_query($conexion, "SELECT * FROM expediente WHERE idexpediente='". $_GET['idexpediente'] ."' ORDER BY numero LIMIT 1");
+					$expediente=mysqli_fetch_array($expedientes);
+					 ?>
+					<input type="text" class="form-control" list="expedientes" id="idexpediente" name="idexpediente" value="<?php echo $expediente['numero']; ?>">
+					<datalist id="expedientes">
 						<?php 
 							$expedientes = mysqli_query($conexion, "SELECT * FROM expediente ORDER BY numero LIMIT 9999");
 							setlocale(LC_ALL, "spanish");
 					  		while($expediente=mysqli_fetch_array($expedientes)){
 								if($expediente['idexpediente']==$act['idexpediente']){ 
-									$selected="selected='selected'";
 								} 
 								else {
 									$selected="";
 								}
-								echo "<option id='".$expediente['idexpediente']."' value='" . $expediente['idexpediente'] . "' ".$selected. ">" . $expediente['numero'] . "</option>"	;
+								echo "<option id='".$expediente['idexpediente']."' value='" . $expediente['numero'] . "'></option>"	;
 							};
 						?>
+
+					</datalist>
 					</select>
 					<label for="numero">Numero de Actuacion Simple:</label>
 					<input class="form-control" type="text" id="numero" name="numero" value="<?php echo $act['numero']; ?>" placeholder="" >

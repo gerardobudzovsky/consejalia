@@ -37,12 +37,13 @@
 	  <table class="table table-inverse" id="mytable">
 	    <thead>
 	      <tr class="azul">
-	        <th>Id Actuacion</th>
-	        <th>Id Expediente</th>
 			<th>Titulo Expediente</th>	        
 			<th>Numero Expediente</th>
+			<th>Numero Actuación</th>
 			<th>Fin</th>
 	        <th>Tipo de actuacion</th>
+	        <th>Fecha</th>
+	        <th>Reseña</th>
 	        <th>Opciones</th>
 	      </tr>
 	    </thead>
@@ -51,16 +52,20 @@
 	        	$i=0;
 	        	while ($fila=mysqli_fetch_array($filas)) {
 
-		        	$filaexpe= mysqli_query($conexion, "SELECT * FROM expediente WHERE idexpediente=".$fila[1]."");
-		        	$arrexpe= mysqli_fetch_array($filaexpe);
-		        	
+		        	if($filaexpe= mysqli_query($conexion, "SELECT * FROM expediente WHERE idexpediente=".$fila[1]."")){
+		        		$arrexpe= mysqli_fetch_array($filaexpe);
+		        	}else {
+		        		$arrexpe= array("","No tiene","No tiene");
+		        	}
+
 		        	echo "<tr>";
-		        	echo "<td>".$fila[0] ."</td>";
-		        	echo "<td>".$fila[1] ."</td>";
 		        	echo "<td>".$arrexpe[1] ."</td>";	        	
 		        	echo "<td>".$arrexpe[2] ."</td>";
+		        	echo "<td>".$fila[2] ."</td>";
 		        	echo "<td>".$fila[3] ."</td>";
 		        	echo "<td>".$fila[6] ."</td>";
+		        	echo "<td>".$fila[4] ."</td>";
+		        	echo "<td>".$fila[5] ."</td>";
 
 		        	echo "<td><a href=veractuacion.php?idactuacion=".$fila[0]."&idexpediente=".$fila[1].">Ver</a>";
 		        	echo "&nbsp;&nbsp;&nbsp";
@@ -91,7 +96,7 @@
 		 	}
 
 		 	for (i = 1; i < tr.length; i++) {
-				td = tr[i].getElementsByTagName("td")[5].innerHTML;
+				td = tr[i].getElementsByTagName("td")[4].innerHTML;
 				if (document.getElementById('pase').checked && (td.toUpperCase() == "PASE")) {
 			      tr[i].removeAttribute("hidden");
 				} 

@@ -1,52 +1,5 @@
 <?php 
 	include "conexion.php";
-	
-	if (isset($_POST['enviar'])) {
-		
-		mysqli_query($conexion, "UPDATE actuacion
-			SET
-			idexpediente= '".$_POST['idexpediente']."',
-			numero= '".$_POST['numero']."',
-			fin= '".$_POST['fin']."',
-			fecha= '".$_POST['fecha']."',
-			resena= '".$_POST['resena']."',
-			tipo= '".$_POST['tipo']."',
-			paseorigen= '".$_POST['paseorigen']."',
-			pasedestino= '".$_POST['pasedestino']."'
-			WHERE idactuacion=".$_GET['idactuacion'].
-				  " AND idexpediente=".$_GET['idexpediente'].""
-		);
-		
-		
-		if ($_POST['tipo'] == 'Instrumento') {			
-			
-			mysqli_query($conexion, "UPDATE instrumento
-			SET 
-			tipo= '".$_POST['tipoins']."',
-			notaayn= '".$_POST['notaayn']."',
-			notadni= '".$_POST['notadni']."',
-			notadireccion= '".$_POST['notadireccion']."',
-			notatelefono= '".$_POST['notatelefono']."',
-			resnumero= '".$_POST['resnumero']."',
-			resndado= '".$_POST['resndado']."',
-			pdotipo= '".$_POST['pdotipo']."',
-			pdoconcejal= '".$_POST['pdoconcejal']."',
-			pdobarrio= '".$_POST['pdobarrio']."',
-			pdotemas= '".$_POST['pdotemas']."',
-			pdotiposes= '".$_POST['pdotiposes']."',
-			ordnumero= '".$_POST['ordnumero']."',
-			ordnumerores= '".$_POST['ordnumerores']."',
-			ordndado= '".$_POST['ordndado']."',
-			leynumero= '".$_POST['leynumero']."'
-			
-			WHERE idactuacion=".$_GET['idactuacion']."" 
-			);
-			
-		}
-		
-		header("Location: gestionactuaciones.php");
-		
-	}
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +17,7 @@
 		<?php 
 			$actuaciones=mysqli_query($conexion, "SELECT * FROM actuacion 
 				WHERE idactuacion=".$_GET['idactuacion'].
-				" AND idexpediente=".$_GET['idexpediente']." LIMIT 1");
+				" LIMIT 1");
 			$actuacion=mysqli_fetch_array($actuaciones);
 			setlocale(LC_ALL, "spanish");
 			$act= $actuacion;
@@ -85,6 +38,7 @@
 					
 					<label>Numero de expediente:</label>
 					<select class="form-control" id="idexpediente" name="idexpediente" disabled>
+					<option selected></option>>
 						<?php 
 							$expedientes = mysqli_query($conexion, "SELECT * FROM expediente ORDER BY numero LIMIT 9999");
 							setlocale(LC_ALL, "spanish");
