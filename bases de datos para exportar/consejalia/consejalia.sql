@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-07-2017 a las 22:06:04
--- Versión del servidor: 10.1.25-MariaDB
--- Versión de PHP: 7.1.7
+-- Tiempo de generación: 28-07-2017 a las 18:41:15
+-- Versión del servidor: 5.7.14
+-- Versión de PHP: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -48,7 +46,9 @@ CREATE TABLE `actuacion` (
 
 INSERT INTO `actuacion` (`idactuacion`, `idexpediente`, `numero`, `fin`, `fecha`, `resena`, `tipo`, `paseorigen`, `pasedestino`, `usuario`, `ultimamodif`) VALUES
 (63, 9, '1234 1', 'un fin 11', '2017-01-01', 'una reseña 11', 'Pase', 'un origen 11', 'un destino 11', NULL, '2017-07-27 20:03:41'),
-(64, 9, '4321 11', 'un fin 11', '2017-01-01', 'una reseña 11', 'Instrumento', '', '', NULL, '2017-07-27 20:04:57');
+(64, 9, '4321 11', 'un fin 11', '2017-01-01', 'una reseña 11', 'Instrumento', '', '', NULL, '2017-07-27 20:04:57'),
+(65, 5, 'ewewewe', 'ewewewe', '2017-07-04', 'wewewewe', 'Pase', 'wewewe', 'ewewewe', NULL, '2017-07-28 12:58:28'),
+(68, NULL, '222222', '2222222222', '2017-07-07', '22222222222', 'Pase', '2222222222', '22222222', NULL, '2017-07-28 14:13:19');
 
 -- --------------------------------------------------------
 
@@ -178,7 +178,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT de la tabla `actuacion`
 --
 ALTER TABLE `actuacion`
-  MODIFY `idactuacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `idactuacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- AUTO_INCREMENT de la tabla `expediente`
 --
@@ -209,7 +209,6 @@ ALTER TABLE `actuacion`
 --
 ALTER TABLE `instrumento`
   ADD CONSTRAINT `fk_instrumento` FOREIGN KEY (`idactuacion`) REFERENCES `actuacion` (`idactuacion`) ON DELETE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
