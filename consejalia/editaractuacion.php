@@ -57,7 +57,7 @@
 			
 		}
 		
-		//header("Location: gestionactuaciones.php");
+		header("Location: gestionactuaciones.php");
 		
 	}
 ?>
