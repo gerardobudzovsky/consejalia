@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-08-2017 a las 06:53:32
+-- Tiempo de generación: 04-08-2017 a las 22:23:57
 -- Versión del servidor: 10.1.24-MariaDB
 -- Versión de PHP: 7.1.6
 
@@ -42,6 +42,17 @@ CREATE TABLE `actuacion` (
   `ultimamodif` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `actuacion`
+--
+
+INSERT INTO `actuacion` (`idactuacion`, `idexpediente`, `numero`, `fin`, `fecha`, `resena`, `tipo`, `paseorigen`, `pasedestino`, `usuario`, `ultimamodif`) VALUES
+(1, 1, '1111', 'un fin', '2017-08-02', 'una reseña', 'Pase', 'un origen', 'un destino', 'admin Creo', '2017-08-04 05:57:40'),
+(2, 1, '2222', 'un fin 2 largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo ', '2017-08-04', 'una reseña 2', 'Instrumento', '', '', 'admin Edito', '2017-08-04 19:23:10'),
+(3, 2, '3333', 'un fin 3', '2017-08-02', 'una reseña 3', 'Instrumento', '', '', 'admin Creo', '2017-08-04 06:10:56'),
+(4, NULL, '4444', 'un fin 4 largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo largo ', '2017-08-04', 'una reseña 4', 'Pase', 'un origen 4', 'un destino 4', 'admin Edito', '2017-08-04 19:23:49'),
+(5, NULL, '5555', 'un fin 5', '2017-08-01', 'una reseña 5', 'Instrumento', '', '', 'admin Creo', '2017-08-04 06:13:00');
+
 -- --------------------------------------------------------
 
 --
@@ -59,6 +70,14 @@ CREATE TABLE `expediente` (
   `usuario` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `ultimamodif` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `expediente`
+--
+
+INSERT INTO `expediente` (`idexpediente`, `titulo`, `numero`, `area`, `resena`, `estado`, `fecha`, `usuario`, `ultimamodif`) VALUES
+(1, 'Un expediente', '0001-A-2017', 'un origen', 'una reseña', 'Ingresado', '2017-08-04', 'admin Creo', '2017-08-04 05:33:14'),
+(2, 'Otro expediente', '0002-A-2017', 'otro origen', 'otra reseña', 'Ingresado', '2017-08-03', 'admin Creo', '2017-08-04 05:34:49');
 
 -- --------------------------------------------------------
 
@@ -92,6 +111,15 @@ CREATE TABLE `instrumento` (
   `usuario` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `ultimamodif` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `instrumento`
+--
+
+INSERT INTO `instrumento` (`idinstrumento`, `idactuacion`, `tipo`, `notaayn`, `notadni`, `notadireccion`, `notatelefono`, `resnumero`, `resndado`, `pdotipo`, `pdoconcejal`, `pdobarrio`, `pdotemas`, `pdotiposes`, `ordnumero`, `ordnumerores`, `ordndado`, `leynumero`, `declnumero`, `declndado`, `invitacionqi`, `oficionro`, `usuario`, `ultimamodif`) VALUES
+(1, 2, 'Ley', '', '', '', '', '', '', 'Ordenanza', '', '', '', 'Sesion Ordinaria', '', '', '', '26427', '', '', '', '', NULL, '2017-08-04 05:58:45'),
+(2, 3, 'Oficio', '', '', '', '', '', '', 'Ordenanza', '', '', '', 'Sesion Ordinaria', '', '', '', '', '', '', '', '1234', NULL, '2017-08-04 06:10:56'),
+(3, 5, 'Invitacion', '', '', '', '', '', '', 'Ordenanza', '', '', '', 'Sesion Ordinaria', '', '', '', '', '', '', 'Juan Pérez', '', NULL, '2017-08-04 06:13:00');
 
 -- --------------------------------------------------------
 
@@ -156,17 +184,17 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT de la tabla `actuacion`
 --
 ALTER TABLE `actuacion`
-  MODIFY `idactuacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idactuacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `expediente`
 --
 ALTER TABLE `expediente`
-  MODIFY `idexpediente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idexpediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `instrumento`
 --
 ALTER TABLE `instrumento`
-  MODIFY `idinstrumento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idinstrumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `login`
 --
