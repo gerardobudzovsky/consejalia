@@ -4,17 +4,17 @@ require('fpdf/fpdf.php');
 
 if($_GET["tipo"] == "semanal"){
     $tiempo="7";
-    $titulo="Informe de los 7 días previos al " . date( "m/d/y");
+    $titulo="Informe de los 7 días previos al " . date( "d/m/y");
 }
 
 if($_GET["tipo"] == "mensual"){
     $tiempo="30";
-    $titulo="Informe de los 30 días previos al " . date( "m/d/y") . "";
+    $titulo="Informe de los 30 días previos al " . date( "d/m/y") . "";
 }
 
 if($_GET["tipo"] == "anual"){
     $tiempo="365";
-    $titulo="Informe de los 365 días previos al " . date( "m/d/y") . "";
+    $titulo="Informe de los 365 días previos al " . date( "d/m/y") . "";
 }
 
 
