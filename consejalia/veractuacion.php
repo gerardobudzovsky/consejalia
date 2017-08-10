@@ -6,13 +6,34 @@
 <html>
 	<head>
 		<title>Ver Actuacion</title>
-		<!-- Bootstrap -->
+		<!-- Subida -->
+<link type="text/css" rel="stylesheet" href="jquery.fileManager.css" />
+
+<!-- include required jQuery + jQueryUI -->
+<link type="text/css" rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.css" />
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="jquery.fileManager.js"></script>
+<script type="text/javascript" src="plupload/js/plupload.full.min.js"></script>
+<script type="text/javascript" src="plupload/js/plupload.min.js"></script>
+<script type="text/javascript" src="plupload/js/jquery.ui.plupload/jquery.ui.plupload.min.js"></script>
+<script type="text/javascript" src="plupload/js/i18n/es.js"></script>
+		<!-- Fin de Subida -->
+
+
+
 		<meta charset="utf-8">
+
+
+
 	</head>
 	<body onload="actuacion()">
+
+
 		<?php 
 			include "menu.php";
-			include "incluirjq.php";
+			
 		?>
 		<?php 
 			$actuaciones=mysqli_query($conexion, "SELECT * FROM actuacion 
@@ -30,6 +51,7 @@
 			$inst= $instrumento;
 			
 		?>
+
 
 		<div class="container">
 			<form action="" method="POST">
@@ -201,6 +223,31 @@
 					</div>
 				</div>				
 			</form>
+
+			<div id="informe">
+						<h2>Informe PDF</h2>
+							<a class="btn btn-default" href="Informeactuacion.php?idactuacion=<?php echo $_GET['idactuacion'] ?>">Generar Informe</a>
+				</div>
+
+						<div id="subida">
+						<h2>Manejo de Archivos</h2>
+							<div id="filemanager_events"></div>
+							<script type="text/javascript">
+								$('#filemanager_events').fileManager({
+									ajaxPath:'fileManager.php',
+									upload:true,
+									Path: "actuaciones/<?php echo $_GET['idactuacion'] ?>",
+									fixedPath: 'actuaciones/<?php echo $_GET['idactuacion'] ?>',
+									events:{
+										click: function() {
+											var data = $(this).data();
+											window.open("http://localhost/consejalia/uploads/actuaciones/<?php echo $_GET['idactuacion'] ?>/" + data.item.title, '_blank');
+										}
+									}
+								});
+							</script>
+						</div>
+						
 		</div>
 	</body>
 	
@@ -517,4 +564,19 @@
 			} 			
 		}
 	</script>	
+		<!-- Ocultar Basurero -->
+	<?php
+		 if(!isset($_SESSION['logged'])){
+	  ?>	
+		<style>
+            .fmTrash {
+                display: none;
+            }
+            .ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+            	display: none;
+            }
+        </style>
+<?php }; ?>
+
 </html>
+

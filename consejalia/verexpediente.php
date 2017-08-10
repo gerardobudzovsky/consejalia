@@ -24,11 +24,25 @@
 		<title>Ver Expediente</title>
 		<!-- Bootstrap -->
 		  <meta charset="utf-8">
+
+		  		<!-- Subida -->
+<link type="text/css" rel="stylesheet" href="jquery.fileManager.css" />
+
+<!-- include required jQuery + jQueryUI -->
+<link type="text/css" rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.css" />
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="jquery.fileManager.js"></script>
+<script type="text/javascript" src="plupload/js/plupload.full.min.js"></script>
+<script type="text/javascript" src="plupload/js/plupload.min.js"></script>
+<script type="text/javascript" src="plupload/js/jquery.ui.plupload/jquery.ui.plupload.min.js"></script>
+<script type="text/javascript" src="plupload/js/i18n/es.js"></script>
+
 	</head>
 	<body>
 		<?php 
 			include "menu.php" ;
-			include "incluirjq.php";	
 		?>
 		<?php 
 			$expedientes=mysqli_query($conexion, "SELECT * FROM expediente WHERE idexpediente=".$_GET['idexpediente']." LIMIT 1");
@@ -84,6 +98,44 @@
 					 ?>
 				</div>	
 			</form>
+			<div id="informe">
+						<h2>Informe PDF</h2>
+						<a class="btn btn-default" href="Informeexpediente.php?idexpediente=<?php echo $_GET['idexpediente'] ?>">Generar Informe</a>
+				</div>
+
+			<div id="subida">
+						<h2>Manejo de Archivos</h2>
+							<div id="filemanager_events"></div>
+							<script type="text/javascript">
+								$('#filemanager_events').fileManager({
+									ajaxPath:'fileManager.php',
+									upload:true,
+									Path: "expedientes/<?php echo $_GET['idexpediente'] ?>",
+									fixedPath: 'expedientes/<?php echo $_GET['idexpediente'] ?>',
+									events:{
+										click: function() {
+											var data = $(this).data();
+											window.open("http://localhost/consejalia/uploads/expedientes/<?php echo $_GET['idexpediente'] ?>/" + data.item.title, '_blank');
+										}
+									}
+								});
+							</script>
+				</div>
+
 		</div>
 	</body>
+<!-- Ocultar Basurero -->
+	<?php
+		 if(!isset($_SESSION['logged'])){
+	  ?>	
+		<style>
+            .fmTrash {
+                display: none;
+            }
+            .ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+            	display: none;
+            }
+        </style>
+<?php }; ?>
+
 </html>
